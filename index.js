@@ -23,11 +23,9 @@ const { fdroid } = require('./function/fdroid.js')
 const { Buddy } = require('./function/buddy.js')
 const { SimSimi } = require('./function/simsimi.js')
 const { blackbox } = require('./function/blackbox.js')
-const { xnxxdl, xnxxsearch } = require('./function/xnxxdl.js')
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
 const { lirikLagu } = require('./function/liriklagu.js') 
-const { ephoto } = require('./function/pornhub.js') 
 const { ytdlv2, ytmp3, ytmp4 } = require('@vreden/youtube_scraper') 
 const { youtube, twitter } = require("btch-downloader")
 const { Ytdll } = require("./function/youtube.js")
@@ -379,23 +377,6 @@ app.get("/api/download/snackvideo", async (req, res) => {
     }
 })
 
-app.get("/api/download/xnxxdl", async (req, res) => {
-    const { url } = req.query;
-    if (!url) return res.json("Isi Parameternya!");
-
-    try {
-        var anu = await xnxxdl(`${url}`)
-        res.json({
-        status: true, 
-        creator: global.creator, 
-        result: anu.result
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
-    }
-})
-
 app.get("/api/download/igdl", async (req, res) => {
     const { url } = req.query;
     if (!url) return res.json("Isi Parameternya!");
@@ -499,24 +480,6 @@ app.get("/api/download/twitter", async (req, res) => {
             creator: global.creator,
             result: anu
         });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
-    }
-});
-
-app.get("/api/download/doodstream", async (req, res) => {
-    const { url } = req.query;
-    if (!url) return res.json("Isi Parameternya!");
-
-    try {
-        var anu = await Buddy(`${url}`)
-
-        res.json({
-            status: true,
-            creator: global.creator,
-            result: anu.response
-        })
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred while fetching data." });
@@ -1043,23 +1006,6 @@ app.get("/api/search/pinterest", async (req, res) => {
     }
 })
 
-app.get("/api/search/xnxx", async (req, res) => {
-    try {     
-      const { q } = req.query
-      if (!q) return res.json("Isi Parameternya!");
-      const result = await xnxxsearch(q)
-      if (!result) return res.json("Error!");
-      res.json({
-      status: true, 
-      creator: global.creator, 
-      result: result.result
-      })
-    } catch (error) {
-        console.log(error);
-        res.send(error)
-    }
-})
-
 app.get("/api/search/npm", async (req, res) => {
     try {     
       const { q } = req.query
@@ -1215,23 +1161,6 @@ app.get("/api/search/lyrics", async (req, res) => {
       status: true, 
       creator: global.creator, 
       result: result
-      })
-    } catch (error) {
-        console.log(error);
-        res.send(error)
-    }
-})
-
-app.get("/api/imagecreator/pornhub", async (req, res) => {
-    try {     
-      const { text1, text2 } = req.query
-      if (!text1 || !text2) return res.json("Isi Parameternya!");
-      const image = await ephoto(text1, text2)
-      if (!image) res.json("Error!")
-      res.json({
-      status: true, 
-      creator: global.creator, 
-      result: image
       })
     } catch (error) {
         console.log(error);
