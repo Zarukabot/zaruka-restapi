@@ -36,6 +36,7 @@ const scp2 = require("imon-videos-downloader")
 const { googleImage } = require('./function/gimage.js') 
 const { githubstalk } = require('./function/githubstalk.js') 
 const { youtubeStalk } = require('./function/ytstalk.js') 
+const { SkipLink } = require("./function/skiplink.js")
 const { fbdl } = require('./function/facebook.js') 
 const { shortUrl, shortUrl2 } = require('./function/tinyurl.js') 
 const { remini } = require('./function/remini.js')
@@ -765,6 +766,34 @@ app.get("/api/tools/whois", async (req, res) => {
     } catch (error) {
         console.log(error);
         res.send(error)
+    }
+})
+
+app.get("/api/tools/skiplink", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.json("Isi parameternya! Contoh: ?url=https://contoh.com");
+
+    try {
+        const apiUrl = `https://api.siputzx.my.id/api/tools/skiplink?url=${encodeURIComponent(url)}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (!data.status) {
+            return res.json({
+                status: false,
+                creator: global.creator,
+                result: data
+            });
+        }
+
+        res.json({
+            status: true,
+            creator: global.creator,
+            result: data
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Terjadi kesalahan saat memproses data." });
     }
 })
 
