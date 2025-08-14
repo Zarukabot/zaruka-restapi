@@ -1,627 +1,161 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaruka Api</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaruka API</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: white;
-         
-            font-family: "Poppins", sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        * {
-          scroll-behavior: smooth;
-        }
-        
-        @keyframes colorChange {
-    0% { color: rgba(0, 0, 0, 0.7); }
-    50% { color: rgb(84, 190, 255); }
-    100% { color: rgba(0, 0, 0, 0.7); }
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-        
-        .text-center {
-            text-align: left;
-            padding-bottom: 5px;
-            margin: 0 15px;
-        }
-        
-        
-        .text-center h1 span {
-          font-size: 10px;
-          background-color: rgba(0, 0, 0, 0.7);
-          padding: 2px 6px;
-          border-radius: 8px;
-          color: rgba(255, 255, 255, 1);
-        }
-        
-        .text-purple-700 {
-            color: #6B21A8;
-        }
-        
-        .text-gray-600 {
-          font-weight: 470;
-        }
-        
-        .text-center h1 {
-          animation: colorChange 15s infinite alternate;
-          font-weight: 550;
-        }
-        
-        .link a {
-          color: rgba(0, 0, 0, 0.8);
-          font-size: 15px;
-          font-weight: 550;
-        }
-        
-        .link a:hover {
-          color: rgba(84, 190, 255, 1);
-        }
-       
-        
-        .card {
-          margin: 2.6rem 4px;
-        }
-        
-        .card .title {
-          font-size: 22px;
-          font-weight: 505;
-          margin: 0 10px;
-          color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .card .endpoints {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: rgba(242, 242, 242, 0.5);
-          border-radius: 8px;
-          margin: 8px 10px;
-          height: 55px;
-        }
-        
-        .card .endpoints .method {
-          background-color: rgba(0, 0, 0, 0.7);
-          border-radius: 8px;
-          padding: 2px 7px;
-          margin: 8px 8px;
-          font-family: "Poppins", sans-serif;
-          font-weight: 600;
-          color: white;
-          font-size: 15px;
-        }
-        
-        .card .endpoints a {
-          background-color: rgba(84, 190, 255, 1);
-          border-radius: 8px;
-          padding: 2px 7px;
-          margin: 8px 8px;
-          font-family: "Poppins", sans-serif;
-          font-weight: 600;
-          color: white;
-          font-size: 15px;
-          text-decoration: none;
-        }
-        
-        .card .endpoints a:hover {
-          background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .card .endpoints .name {
-          font-size: 14px;
-          font-weight: 580;
-          color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .tombol {
-          opacity: 0;
-          position: fixed;
-          z-index: 99;
-          bottom: 25px;
-          right: -50vh;
-          transition: all 0.8s;
-        }
-        
-        
-        .tombol button {
-          border: none;
-          padding: 15px 15px;
-          border-radius: 50px;
-          background-color: rgba(84, 190, 255, 1);
-        }
-        
-        .tombol button:active {
-          background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .tombol button a {
-          color: white;
-          text-decoration: none;
-          font-size: 20px;
-        }
-        
-        .tombol.show {
-          right: 25px;
-          opacity: 1;
-        }
-        
-
-
-    </style>
- 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {background:#f9f9f9;font-family:"Poppins",sans-serif;margin:0;padding:0;scroll-behavior:smooth;}
+.container{max-width:900px;margin:0 auto;padding:20px;}
+.text-center h1{font-weight:600;font-size:2rem;animation:colorChange 15s infinite alternate;margin-bottom:10px;text-align:center;}
+.text-center h1 span{font-size:12px;background-color:#333;padding:2px 6px;border-radius:8px;color:#fff;margin-left:10px;}
+.link{text-align:center;margin-bottom:20px;}
+.link a{color:#4d83e8;font-weight:500;font-size:14px;text-decoration:none;margin:0 10px;transition:0.3s;}
+.link a:hover{color:#1a5fcc;}
+.card{background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);margin:20px 0;padding:15px;transition:transform 0.3s,box-shadow 0.3s;}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 16px rgba(0,0,0,0.15);}
+.card .title{font-size:20px;font-weight:600;color:#333;margin-bottom:10px;}
+.endpoints{display:flex;justify-content:space-between;align-items:center;background:#f1f1f1;border-radius:8px;margin:8px 0;padding:10px 12px;transition:0.3s;}
+.endpoints:hover{background:#e0f0ff;}
+.method{background:#333;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600;font-size:14px;}
+.name{font-size:14px;font-weight:500;color:#333;}
+.endpoints a{background:#54beff;color:#fff;padding:5px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:0.3s;}
+.endpoints a:hover{background:#1a5fcc;}
+.tombol{position:fixed;bottom:25px;right:-60px;z-index:99;opacity:0;transition:all 0.8s ease;}
+.tombol.show{right:25px;opacity:1;}
+.tombol button{border:none;padding:12px 14px;border-radius:50%;background:#54beff;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.2);transition:0.3s;}
+.tombol button a{color:white;font-size:18px;}
+.tombol button:hover{background:#1a5fcc;}
+@keyframes colorChange{0%{color:rgba(0,0,0,0.7);}50%{color:#54beff;}100%{color:rgba(0,0,0,0.7);}}
+@media screen and (max-width:768px){.endpoints{flex-direction:column;align-items:flex-start}.endpoints a{margin-top:5px;}}
+</style>
 </head>
 <body>
-  <div class="tombol">
+
+<!-- Scroll Button -->
+<div class="tombol">
 <button><a class="fa fa-arrow-up" href="#"></a></button>
 </div>
-    <div class="container">
-        <div class="text-center">
-            <h1 class="font-bold text-purple-700">Zaruka Api <span>v1.0.0</span></h1>
-            <div class="link">
-                <a href="https://wa.me/6282249787434" class="text-blue-500">Contact the developer</a>
-            </div>
-            <div class="link">
-                <a href="https://wa.me/6282249787434" class="text-blue-500">API Development Information</a>
-            </div>
-        </div>
-        
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Orderkuota Gateway</div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Create Payment</p>
-            <a href="/api/orkut/createpayment?apikey=&amount=&codeqr=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Cek Status</p>
-            <a href="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=">Try</i></a>
-          </div>
-          
-        </div>
-<!-- Stop Endpoints -->
 
-
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Downloader</div>
-  
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">AIO (all downloader)</p>
-            <a href="/api/download/aiodl?url=">Try</i></a>
-          </div>
-                    
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Tiktok</p>
-            <a href="/api/download/tiktokdl?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Facebook</p>
-            <a href="/api/download/fbdl?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Instagram</p>
-            <a href="/api/download/igdl?url=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Ytmp3</p>
-            <a href="/api/download/ytmp3?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Ytmp4</p>
-            <a href="/api/download/ytmp4?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Youtube V2</p>
-            <a href="/api/download/ytdlv2?url=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Capcut</p>
-            <a href="/api/download/capcut?url=">Try</i></a>
-          </div>              
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Twitter</p>
-            <a href="/api/download/twitter?url=">Try</i></a>
-          </div>                                 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Google Drive</p>
-            <a href="/api/download/gdrive?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Mediafire</p>
-            <a href="/api/download/mediafire?url=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Pinterest Video</p>
-            <a href="/api/download/pindlvid?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Spotify</p>
-            <a href="/api/download/spotify?url=">Try</i></a>
-          </div>     
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Play Spotify</p>
-            <a href="/api/download/playspotify?q=">Try</i></a>
-          </div>                                                
-                                        
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Soundcloud</p>
-            <a href="/api/download/soundcloud?url=">Try</i></a>
-          </div>        
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Snackvideo</p>
-            <a href="/api/download/snackvideo?url=">Try</i></a>
-          </div>           
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Terabox</p>
-            <a href="/api/download/terabox?url=">Try</i></a>
-          </div>                
-          
-        </div>
-<!-- Stop Endpoints -->
-
-
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Openai</div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Openai</p>
-            <a href="/api/ai/openai?msg=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Openai Prompt</p>
-            <a href="/api/ai/openai-prompt?prompt=&msg=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Blackbox</p>
-            <a href="/api/ai/blackbox?msg=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">DeepSeek</p>
-            <a href="/api/ai/deepseek?msg=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">GPT 4</p>
-            <a href="/api/ai/gpt4?text=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">GPT 3.5 Turbo</p>
-            <a href="/api/ai/gpt-3-5-turbo?text=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Gemini</p>
-            <a href="/api/ai/gemini?text="">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Sim Simi</p>
-            <a href="/api/ai/simsimi?msg=">Try</i></a>
-          </div>                    
-          
-        </div>
-<!-- Stop Endpoints -->
-
-
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Tools</div>       
-  
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">OCR</p>
-            <a href="/api/tools/ocr?url=">Try</i></a>
-          </div>
-
-        <div class="endpoints">
-    <p class="method">GET</p>
-    <p class="name">Skiplink</p>
-    <a href="/api/tools/skiplink?url=">Try</a>
+<div class="container">
+<!-- Header -->
+<div class="text-center">
+<h1>Zaruka API <span>v1.0.0</span></h1>
+<div class="link">
+<a href="https://wa.me/6282249787434">Contact Developer</a>
+<a href="https://wa.me/6282249787434">API Development Info</a>
+</div>
 </div>
 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Shortlink Tinyurl</p>
-            <a href="/api/tools/tinyurl?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Shortlink Isgd</p>
-            <a href="/api/tools/isgd?url=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Whois Domain</p>
-            <a href="/api/tools/whois?domain=">Try</i></a>
-          </div>
-          
-        </div>
-<!-- Stop Endpoints -->
-
-
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Search</div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Google Image</p>
-            <a href="/api/search/gimage?q=">Try</i></a>
-          </div>
-
-            <div class="endpoints">
-    <p class="method">GET</p>
-    <p class="name">OtakOtaku Search</p>
-    <a href="/api/search/otakotaku?query=">Try</a>
+<!-- ===== Orderkuota Gateway ===== -->
+<div class="card">
+<div class="title">Orderkuota Gateway</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Create Payment</p><a href="/api/orkut/createpayment?apikey=&amount=&codeqr=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Cek Status</p><a href="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=">Try</a></div>
 </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Pinterest</p>
-            <a href="/api/search/pinterest?q=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Playstore</p>
-            <a href="/api/search/playstore?q=">Try</i></a>
-          </div>           
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Fdroid</p>
-            <a href="/api/search/fdroid?q=">Try</i></a>
-          </div>               
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Youtube Search</p>
-            <a href="/api/search/ytsearch?q=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Happymod</p>
-            <a href="/api/search/happymod?q=">Try</i></a>
-          </div>
 
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Sfilemobi</p>
-            <a href="/api/search/sfile?q=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Tiktok Search</p>
-            <a href="/api/search/tiktoksearch?q=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">NPM Search</p>
-            <a href="/api/search/npm?q=">Try</i></a>
-          </div>                                  
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Lyrics</p>
-            <a href="/api/search/lyrics?q=">Try</i></a>
-          </div>    
-          
-        </div>
-<!-- Stop Endpoints -->
+<!-- ===== Downloader ===== -->
+<div class="card">
+<div class="title">Downloader</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">AIO</p><a href="/api/download/aiodl?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok</p><a href="/api/download/tiktokdl?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><a href="/api/download/fbdl?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><a href="/api/download/igdl?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp3</p><a href="/api/download/ytmp3?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp4</p><a href="/api/download/ytmp4?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Youtube V2</p><a href="/api/download/ytdlv2?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Capcut</p><a href="/api/download/capcut?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><a href="/api/download/twitter?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Google Drive</p><a href="/api/download/gdrive?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Mediafire</p><a href="/api/download/mediafire?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Pinterest Video</p><a href="/api/download/pindlvid?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Spotify</p><a href="/api/download/spotify?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Play Spotify</p><a href="/api/download/playspotify?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Soundcloud</p><a href="/api/download/soundcloud?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Snackvideo</p><a href="/api/download/snackvideo?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Terabox</p><a href="/api/download/terabox?url=">Try</a></div>
+</div>
 
+<!-- ===== OpenAI / AI ===== -->
+<div class="card">
+<div class="title">OpenAI</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI</p><a href="/api/ai/openai?msg=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI Prompt</p><a href="/api/ai/openai-prompt?prompt=&msg=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Blackbox</p><a href="/api/ai/blackbox?msg=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">DeepSeek</p><a href="/api/ai/deepseek?msg=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">GPT 4</p><a href="/api/ai/gpt4?text=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">GPT 3.5 Turbo</p><a href="/api/ai/gpt-3-5-turbo?text=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Gemini</p><a href="/api/ai/gemini?text=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Sim Simi</p><a href="/api/ai/simsimi?msg=">Try</a></div>
+</div>
 
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Sosmed Stalk</div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Tiktok Stalk</p>
-            <a href="/api/tools/tiktokstalk?user=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Instagram Stalk</p>
-            <a href="/api/tools/igstalk?username=">Try</i></a>
-          </div>          
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Github Stalk</p>
-            <a href="/api/tools/githubstalk?user=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">NPM Stalk</p>
-            <a href="/api/tools/npmstalk?pkgname=">Try</i></a>
-          </div>  
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Youtube Stalk</p>
-            <a href="/api/tools/youtubestalk?user=">Try</i></a>
-          </div>                              
-          
-        </div>
-<!-- Stop Endpoints -->
+<!-- ===== Tools ===== -->
+<div class="card">
+<div class="title">Tools</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OCR</p><a href="/api/tools/ocr?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Skiplink</p><a href="/api/tools/skiplink?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink TinyURL</p><a href="/api/tools/tinyurl?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink Isgd</p><a href="/api/tools/isgd?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Whois Domain</p><a href="/api/tools/whois?domain=">Try</a></div>
+</div>
 
+<!-- ===== Search ===== -->
+<div class="card">
+<div class="title">Search</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Google Image</p><a href="/api/search/gimage?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OtakOtaku Search</p><a href="/api/search/otakotaku?query=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Pinterest</p><a href="/api/search/pinterest?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Playstore</p><a href="/api/search/playstore?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Fdroid</p><a href="/api/search/fdroid?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Youtube Search</p><a href="/api/search/ytsearch?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Happymod</p><a href="/api/search/happymod?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Sfilemobi</p><a href="/api/search/sfile?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok Search</p><a href="/api/search/tiktoksearch?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">NPM Search</p><a href="/api/search/npm?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Lyrics</p><a href="/api/search/lyrics?q=">Try</a></div>
+</div>
 
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Image Creator</div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Brat</p>
-            <a href="/api/imagecreator/bratgenerator?text=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Emoji Mix</p>
-            <a href="/api/imagecreator/emojimix?emoji1=&emoji2=">Try</i></a>
-          </div> 
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Emoji To Gif</p>
-            <a href="/api/imagecreator/emojitogif?emoji=">Try</i></a>
-          </div>                               
-          
-           <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Remini</p>
-            <a href="/api/imagecreator/remini?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Removebg</p>
-            <a href="/api/imagecreator/removebg?url=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Upscale</p>
-            <a href="/api/imagecreator/upscale?url=">Try</i></a>
-          </div>                            
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Quotely</p>
-            <a href="/api/imagecreator/qc?text=&fotoUrl=&nama=">Try</i></a>
-          </div>          
-          
-        </div>
-<!-- Stop Endpoints -->
+<!-- ===== Sosmed Stalk ===== -->
+<div class="card">
+<div class="title">Sosmed Stalk</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok Stalk</p><a href="/api/tools/tiktokstalk?user=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Instagram Stalk</p><a href="/api/tools/igstalk?username=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Github Stalk</p><a href="/api/tools/githubstalk?username=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">NPM Stalk</p><a href="/api/tools/npmstalk?query=">Try</a></div>
+</div>
 
-<!-- Start Endpoints -->
-        <div class="card">
-        
-  <div class="title">Panel Pterodactyl</div>       
-  
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Create Panel</p>
-            <a href="/api/pterodactyl/create?username=&ram=&disk=&cpu=&eggid=&nestid=&loc=&domain=&ptla=&ptlc=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">List Panel</p>
-            <a href="/api/pterodactyl/listpanel?eggid=&nestid=&loc=&domain=&ptla=&ptlc=">Try</i></a>
-          </div>
-          
-          <div class="endpoints">
-            <p class="method">Get</p>
-            <p class="name">Delete Panel</p>
-            <a href="/api/pterodactyl/delete?idserver=&domain=&ptla=">Try</i></a>
-          </div>                                        
-          
-        </div>
-<!-- Stop Endpoints -->
+<!-- ===== Image Creator ===== -->
+<div class="card">
+<div class="title">Image Creator</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">AI Image</p><a href="/api/image/aiimage?text=">Try</a></div>
+</div>
 
+<!-- ===== Panel Pterodactyl ===== -->
+<div class="card">
+<div class="title">Panel Pterodactyl</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ptero Node Info</p><a href="/api/pterodactyl/node?domain=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ptero Server Info</p><a href="/api/pterodactyl/server?domain=">Try</a></div>
+</div>
+
+</div>
 
 <script>
-
-      document.addEventListener("DOMContentLoaded", function() {
-      const backToTopButton = document.querySelector(".tombol");
-
-      window.addEventListener("scroll", function() {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition > scrollHeight * 0.10) {
-      backToTopButton.classList.add("show");
-      } else {
-      backToTopButton.classList.remove("show");
-      }
-      });
-      });
-
-      // Fungsi untuk kembali ke atas dengan animasi smooth
-      function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
+document.addEventListener("DOMContentLoaded", function() {
+const backToTopButton = document.querySelector(".tombol");
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 200) backToTopButton.classList.add("show");
+    else backToTopButton.classList.remove("show");
+});
+backToTopButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({top:0,behavior:"smooth"});
+});
+});
 </script>
-
 
 </body>
 </html>
