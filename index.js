@@ -1092,6 +1092,34 @@ app.get("/api/search/playstore", async (req, res) => {
     }
 })
 
+app.get("/api/search/otakotaku", async (req, res) => {
+    const { query } = req.query;
+    if (!query) return res.json("Isi parameternya! Contoh: ?query=naruto");
+
+    try {
+        const apiUrl = `https://api.siputzx.my.id/api/s/otakotaku?query=${encodeURIComponent(query)}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (!data.status) {
+            return res.json({
+                status: false,
+                creator: global.creator,
+                result: data
+            });
+        }
+
+        res.json({
+            status: true,
+            creator: global.creator,
+            result: data
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Terjadi kesalahan saat memproses data." });
+    }
+});
+
 app.get("/api/search/fdroid", async (req, res) => {
     try {     
       const { q } = req.query
