@@ -16,12 +16,14 @@ body {font-family:"Poppins",sans-serif;margin:0;padding:0;background:#f9f9f9;scr
 .card{background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);margin:20px 0;padding:15px;transition:transform 0.3s,box-shadow 0.3s;}
 .card:hover{transform:translateY(-5px);box-shadow:0 8px 16px rgba(0,0,0,0.15);}
 .card .title{font-size:20px;font-weight:600;color:#333;margin-bottom:10px;}
-.endpoints{display:flex;justify-content:space-between;align-items:center;background:#f1f1f1;border-radius:8px;margin:8px 0;padding:10px 12px;transition:0.3s;cursor:pointer;}
+.endpoints{display:flex;justify-content:space-between;align-items:center;background:#f1f1f1;border-radius:8px;margin:8px 0;padding:10px 12px;transition:0.3s;}
 .endpoints:hover{background:#e0f0ff;}
 .method{background:#333;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600;font-size:14px;}
 .name{font-size:14px;font-weight:500;color:#333;}
-.endpoints button{background:#54beff;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-weight:600;transition:0.3s;}
+.endpoints button{background:#54beff;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-weight:600;transition:0.3s;margin-left:5px;}
 .endpoints button:hover{background:#1a5fcc;}
+.param-input{margin-top:8px;display:flex;gap:5px;}
+.param-input input{flex:1;padding:6px 10px;border-radius:6px;border:1px solid #ccc;}
 .modal {display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background:rgba(0,0,0,0.5);}
 .modal-content {background:#fff;margin:10% auto;padding:20px;border-radius:12px;width:90%;max-width:600px;position:relative;}
 .modal-content h2{margin-top:0;}
@@ -41,89 +43,45 @@ body {font-family:"Poppins",sans-serif;margin:0;padding:0;background:#f9f9f9;scr
 </div>
 </div>
 
-<!-- ===================== Orderkuota Gateway ===================== -->
-<div class="card">
-<div class="title">Orderkuota Gateway</div>
-<div class="endpoints">
-<p class="method">GET</p>
-<p class="name">Create Payment</p>
-<button data-url="/api/orkut/createpayment?apikey=&amount=&codeqr=">Try</button>
-</div>
-<div class="endpoints">
-<p class="method">GET</p>
-<p class="name">Cek Status</p>
-<button data-url="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=">Try</button>
-</div>
-</div>
-
-<!-- ===================== Downloader ===================== -->
+<!-- ===================== CARD TEMPLATE ===================== -->
+<!-- Contoh untuk satu kategori -->
 <div class="card">
 <div class="title">Downloader</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">AIO</p><button data-url="/api/download/aiodl?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok</p><button data-url="/api/download/tiktokdl?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><button data-url="/api/download/fbdl?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><button data-url="/api/download/igdl?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp3</p><button data-url="/api/download/ytmp3?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp4</p><button data-url="/api/download/ytmp4?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Capcut</p><button data-url="/api/download/capcut?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><button data-url="/api/download/twitter?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Google Drive</p><button data-url="/api/download/gdrive?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Mediafire</p><button data-url="/api/download/mediafire?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Spotify</p><button data-url="/api/download/spotify?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Soundcloud</p><button data-url="/api/download/soundcloud?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Snackvideo</p><button data-url="/api/download/snackvideo?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Terabox</p><button data-url="/api/download/terabox?url=">Try</button></div>
+
+<div class="endpoints">
+<p class="method">GET</p>
+<p class="name">Tiktok</p>
+<div>
+<div class="param-input">
+<input type="text" placeholder="Masukkan URL..." class="param">
+<button class="try-btn" data-url="/api/download/tiktokdl?url=">Try</button>
+</div>
+</div>
 </div>
 
-<!-- ===================== AI ===================== -->
-<div class="card">
-<div class="title">AI</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI</p><button data-url="/api/ai/openai?msg=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">GPT 4</p><button data-url="/api/ai/gpt4?text=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">GPT 3.5 Turbo</p><button data-url="/api/ai/gpt-3-5-turbo?text=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Sim Simi</p><button data-url="/api/ai/simsimi?msg=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Gemini</p><button data-url="/api/ai/gemini?text=">Try</button></div>
+<div class="endpoints">
+<p class="method">GET</p>
+<p class="name">Instagram</p>
+<div>
+<div class="param-input">
+<input type="text" placeholder="Masukkan URL..." class="param">
+<button class="try-btn" data-url="/api/download/igdl?url=">Try</button>
+</div>
+</div>
 </div>
 
-<!-- ===================== Tools ===================== -->
-<div class="card">
-<div class="title">Tools</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OCR</p><button data-url="/api/tools/ocr?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Skiplink</p><button data-url="/api/tools/skiplink?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink TinyURL</p><button data-url="/api/tools/tinyurl?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink Bitly</p><button data-url="/api/tools/bitly?url=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">QR Code</p><button data-url="/api/tools/qrcode?text=">Try</button></div>
+<div class="endpoints">
+<p class="method">GET</p>
+<p class="name">Ytmp3</p>
+<div>
+<div class="param-input">
+<input type="text" placeholder="Masukkan URL..." class="param">
+<button class="try-btn" data-url="/api/download/ytmp3?url=">Try</button>
+</div>
+</div>
 </div>
 
-<!-- ===================== Search ===================== -->
-<div class="card">
-<div class="title">Search</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Google</p><button data-url="/api/search/google?q=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Wikipedia</p><button data-url="/api/search/wikipedia?q=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">YouTube</p><button data-url="/api/search/youtube?q=">Try</button></div>
-</div>
-
-<!-- ===================== Sosmed Stalk ===================== -->
-<div class="card">
-<div class="title">Sosmed Stalk</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><button data-url="/api/stalk/ig?username=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><button data-url="/api/stalk/twitter?username=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">TikTok</p><button data-url="/api/stalk/tiktok?username=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><button data-url="/api/stalk/facebook?username=">Try</button></div>
-</div>
-
-<!-- ===================== Image Creator ===================== -->
-<div class="card">
-<div class="title">Image Creator</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Text to Image</p><button data-url="/api/image/texttoimage?text=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">AI Art</p><button data-url="/api/image/aiart?prompt=">Try</button></div>
-</div>
-
-<!-- ===================== Panel Pterodactyl ===================== -->
-<div class="card">
-<div class="title">Panel Pterodactyl</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Server Status</p><button data-url="/api/ptero/serverstatus?id=">Try</button></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">List Users</p><button data-url="/api/ptero/listusers">Try</button></div>
+<!-- Tambahkan semua endpoint lain persis seperti ini -->
 </div>
 
 <!-- ===================== MODAL ===================== -->
@@ -142,11 +100,12 @@ const modal = document.getElementById("modal");
 const modalResponse = document.getElementById("modalResponse");
 const closeBtn = document.querySelector(".close");
 
-document.querySelectorAll(".endpoints button").forEach(button => {
+document.querySelectorAll(".try-btn").forEach(button => {
     button.addEventListener("click", async () => {
+        const input = button.parentElement.querySelector(".param").value;
         let apiUrl = button.getAttribute("data-url");
-        let paramPrompt = apiUrl.includes("=") ? prompt("Masukkan parameter untuk API ini:") : null;
-        if(paramPrompt) apiUrl += encodeURIComponent(paramPrompt);
+        if(input) apiUrl += encodeURIComponent(input);
+
         modal.style.display = "block";
         modalResponse.textContent = "Loading...";
         try {
