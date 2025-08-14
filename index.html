@@ -3,158 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zaruka API</title>
+<title>Zaruka API Interactive</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body {background:#f9f9f9;font-family:"Poppins",sans-serif;margin:0;padding:0;scroll-behavior:smooth;}
+body {font-family:"Poppins",sans-serif;margin:0;padding:0;background:#f9f9f9;scroll-behavior:smooth;}
 .container{max-width:900px;margin:0 auto;padding:20px;}
-.text-center h1{font-weight:600;font-size:2rem;animation:colorChange 15s infinite alternate;margin-bottom:10px;text-align:center;}
-.text-center h1 span{font-size:12px;background-color:#333;padding:2px 6px;border-radius:8px;color:#fff;margin-left:10px;}
+.text-center h1{font-weight:600;font-size:2rem;margin-bottom:10px;text-align:center;color:#333;}
 .link{text-align:center;margin-bottom:20px;}
 .link a{color:#4d83e8;font-weight:500;font-size:14px;text-decoration:none;margin:0 10px;transition:0.3s;}
 .link a:hover{color:#1a5fcc;}
 .card{background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);margin:20px 0;padding:15px;transition:transform 0.3s,box-shadow 0.3s;}
 .card:hover{transform:translateY(-5px);box-shadow:0 8px 16px rgba(0,0,0,0.15);}
 .card .title{font-size:20px;font-weight:600;color:#333;margin-bottom:10px;}
-.endpoints{display:flex;justify-content:space-between;align-items:center;background:#f1f1f1;border-radius:8px;margin:8px 0;padding:10px 12px;transition:0.3s;}
+.endpoints{display:flex;justify-content:space-between;align-items:center;background:#f1f1f1;border-radius:8px;margin:8px 0;padding:10px 12px;transition:0.3s;cursor:pointer;}
 .endpoints:hover{background:#e0f0ff;}
 .method{background:#333;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600;font-size:14px;}
 .name{font-size:14px;font-weight:500;color:#333;}
-.endpoints a{background:#54beff;color:#fff;padding:5px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:0.3s;}
-.endpoints a:hover{background:#1a5fcc;}
-.tombol{position:fixed;bottom:25px;right:-60px;z-index:99;opacity:0;transition:all 0.8s ease;}
-.tombol.show{right:25px;opacity:1;}
-.tombol button{border:none;padding:12px 14px;border-radius:50%;background:#54beff;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.2);transition:0.3s;}
-.tombol button a{color:white;font-size:18px;}
-.tombol button:hover{background:#1a5fcc;}
-@keyframes colorChange{0%{color:rgba(0,0,0,0.7);}50%{color:#54beff;}100%{color:rgba(0,0,0,0.7);}}
-@media screen and (max-width:768px){.endpoints{flex-direction:column;align-items:flex-start}.endpoints a{margin-top:5px;}}
+.endpoints button{background:#54beff;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-weight:600;transition:0.3s;}
+.endpoints button:hover{background:#1a5fcc;}
+.modal {display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background:rgba(0,0,0,0.5);}
+.modal-content {background:#fff;margin:10% auto;padding:20px;border-radius:12px;width:90%;max-width:600px;position:relative;}
+.modal-content h2{margin-top:0;}
+.close {position:absolute;top:10px;right:20px;font-size:24px;font-weight:bold;color:#333;cursor:pointer;}
+.response {background:#f5f5f5;padding:10px;border-radius:8px;white-space:pre-wrap;max-height:300px;overflow:auto;}
+@media screen and (max-width:768px){.endpoints{flex-direction:column;align-items:flex-start}.endpoints button{margin-top:5px;}}
 </style>
 </head>
 <body>
 
-<!-- Scroll Button -->
-<div class="tombol">
-<button><a class="fa fa-arrow-up" href="#"></a></button>
-</div>
-
 <div class="container">
-<!-- Header -->
 <div class="text-center">
-<h1>Zaruka API <span>v1.0.0</span></h1>
+<h1>Zaruka API Interactive <span>v1.0.0</span></h1>
 <div class="link">
-<a href="https://wa.me/6282249787434">Contact Developer</a>
-<a href="https://wa.me/6282249787434">API Development Info</a>
+<a href="https://wa.me/6282249787434" target="_blank">Contact Developer</a>
+<a href="https://wa.me/6282249787434" target="_blank">API Info</a>
 </div>
 </div>
 
-<!-- ===== Orderkuota Gateway ===== -->
+<!-- ===================== ORDERKUOTA GATEWAY ===================== -->
 <div class="card">
 <div class="title">Orderkuota Gateway</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Create Payment</p><a href="/api/orkut/createpayment?apikey=&amount=&codeqr=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Cek Status</p><a href="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=">Try</a></div>
+<div class="endpoints">
+<p class="method">GET</p>
+<p class="name">Create Payment</p>
+<button data-url="/api/orkut/createpayment?apikey=&amount=&codeqr=">Try</button>
+</div>
+<div class="endpoints">
+<p class="method">GET</p>
+<p class="name">Cek Status</p>
+<button data-url="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=">Try</button>
+</div>
 </div>
 
-<!-- ===== Downloader ===== -->
+<!-- ===================== DOWNLOADER ===================== -->
 <div class="card">
 <div class="title">Downloader</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">AIO</p><a href="/api/download/aiodl?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok</p><a href="/api/download/tiktokdl?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><a href="/api/download/fbdl?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><a href="/api/download/igdl?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp3</p><a href="/api/download/ytmp3?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp4</p><a href="/api/download/ytmp4?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Youtube V2</p><a href="/api/download/ytdlv2?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Capcut</p><a href="/api/download/capcut?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><a href="/api/download/twitter?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Google Drive</p><a href="/api/download/gdrive?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Mediafire</p><a href="/api/download/mediafire?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Pinterest Video</p><a href="/api/download/pindlvid?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Spotify</p><a href="/api/download/spotify?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Play Spotify</p><a href="/api/download/playspotify?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Soundcloud</p><a href="/api/download/soundcloud?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Snackvideo</p><a href="/api/download/snackvideo?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Terabox</p><a href="/api/download/terabox?url=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">AIO (all)</p><button data-url="/api/download/aiodl?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok</p><button data-url="/api/download/tiktokdl?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><button data-url="/api/download/fbdl?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><button data-url="/api/download/igdl?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp3</p><button data-url="/api/download/ytmp3?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Ytmp4</p><button data-url="/api/download/ytmp4?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Capcut</p><button data-url="/api/download/capcut?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><button data-url="/api/download/twitter?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Google Drive</p><button data-url="/api/download/gdrive?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Mediafire</p><button data-url="/api/download/mediafire?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Spotify</p><button data-url="/api/download/spotify?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Soundcloud</p><button data-url="/api/download/soundcloud?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Snackvideo</p><button data-url="/api/download/snackvideo?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Terabox</p><button data-url="/api/download/terabox?url=">Try</button></div>
 </div>
 
-<!-- ===== OpenAI / AI ===== -->
+<!-- ===================== AI ===================== -->
 <div class="card">
-<div class="title">OpenAI</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI</p><a href="/api/ai/openai?msg=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI Prompt</p><a href="/api/ai/openai-prompt?prompt=&msg=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Blackbox</p><a href="/api/ai/blackbox?msg=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">DeepSeek</p><a href="/api/ai/deepseek?msg=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">GPT 4</p><a href="/api/ai/gpt4?text=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">GPT 3.5 Turbo</p><a href="/api/ai/gpt-3-5-turbo?text=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Gemini</p><a href="/api/ai/gemini?text=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Sim Simi</p><a href="/api/ai/simsimi?msg=">Try</a></div>
+<div class="title">AI</div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OpenAI</p><button data-url="/api/ai/openai?msg=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">GPT 4</p><button data-url="/api/ai/gpt4?text=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">GPT 3.5 Turbo</p><button data-url="/api/ai/gpt-3-5-turbo?text=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Sim Simi</p><button data-url="/api/ai/simsimi?msg=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Gemini</p><button data-url="/api/ai/gemini?text=">Try</button></div>
 </div>
 
-<!-- ===== Tools ===== -->
+<!-- ===================== TOOLS ===================== -->
 <div class="card">
 <div class="title">Tools</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OCR</p><a href="/api/tools/ocr?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Skiplink</p><a href="/api/tools/skiplink?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink TinyURL</p><a href="/api/tools/tinyurl?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink Isgd</p><a href="/api/tools/isgd?url=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Whois Domain</p><a href="/api/tools/whois?domain=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">OCR</p><button data-url="/api/tools/ocr?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Skiplink</p><button data-url="/api/tools/skiplink?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink TinyURL</p><button data-url="/api/tools/tinyurl?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Shortlink Bitly</p><button data-url="/api/tools/bitly?url=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">QR Code</p><button data-url="/api/tools/qrcode?text=">Try</button></div>
 </div>
 
-<!-- ===== Search ===== -->
+<!-- ===================== SEARCH ===================== -->
 <div class="card">
 <div class="title">Search</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Google Image</p><a href="/api/search/gimage?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">OtakOtaku Search</p><a href="/api/search/otakotaku?query=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Pinterest</p><a href="/api/search/pinterest?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Playstore</p><a href="/api/search/playstore?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Fdroid</p><a href="/api/search/fdroid?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Youtube Search</p><a href="/api/search/ytsearch?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Happymod</p><a href="/api/search/happymod?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Sfilemobi</p><a href="/api/search/sfile?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok Search</p><a href="/api/search/tiktoksearch?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">NPM Search</p><a href="/api/search/npm?q=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Lyrics</p><a href="/api/search/lyrics?q=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Google</p><button data-url="/api/search/google?q=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Wikipedia</p><button data-url="/api/search/wikipedia?q=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">YouTube</p><button data-url="/api/search/youtube?q=">Try</button></div>
 </div>
 
-<!-- ===== Sosmed Stalk ===== -->
+<!-- ===================== SOSMED STALK ===================== -->
 <div class="card">
 <div class="title">Sosmed Stalk</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Tiktok Stalk</p><a href="/api/tools/tiktokstalk?user=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Instagram Stalk</p><a href="/api/tools/igstalk?username=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Github Stalk</p><a href="/api/tools/githubstalk?username=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">NPM Stalk</p><a href="/api/tools/npmstalk?query=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Instagram</p><button data-url="/api/stalk/ig?username=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Twitter</p><button data-url="/api/stalk/twitter?username=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">TikTok</p><button data-url="/api/stalk/tiktok?username=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Facebook</p><button data-url="/api/stalk/facebook?username=">Try</button></div>
 </div>
 
-<!-- ===== Image Creator ===== -->
+<!-- ===================== IMAGE CREATOR ===================== -->
 <div class="card">
 <div class="title">Image Creator</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">AI Image</p><a href="/api/image/aiimage?text=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Text to Image</p><button data-url="/api/image/texttoimage?text=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">AI Art</p><button data-url="/api/image/aiart?prompt=">Try</button></div>
 </div>
 
-<!-- ===== Panel Pterodactyl ===== -->
+<!-- ===================== PANEL PTERODACTYL ===================== -->
 <div class="card">
 <div class="title">Panel Pterodactyl</div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ptero Node Info</p><a href="/api/pterodactyl/node?domain=">Try</a></div>
-<div class="endpoints"><p class="method">GET</p><p class="name">Ptero Server Info</p><a href="/api/pterodactyl/server?domain=">Try</a></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">Server Status</p><button data-url="/api/ptero/serverstatus?id=">Try</button></div>
+<div class="endpoints"><p class="method">GET</p><p class="name">List Users</p><button data-url="/api/ptero/listusers">Try</button></div>
+</div>
+
+<!-- ===================== MODAL ===================== -->
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h2>API Response</h2>
+<div class="response" id="modalResponse"></div>
+</div>
 </div>
 
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-const backToTopButton = document.querySelector(".tombol");
-window.addEventListener("scroll", function() {
-    if (window.scrollY > 200) backToTopButton.classList.add("show");
-    else backToTopButton.classList.remove("show");
+const modal = document.getElementById("modal");
+const modalResponse = document.getElementById("modalResponse");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".endpoints button").forEach(button => {
+    button.addEventListener("click", async () => {
+        let apiUrl = button.getAttribute("data-url");
+        let paramPrompt = apiUrl.includes("=") ? prompt("Masukkan parameter untuk API ini:") : null;
+        if(paramPrompt) apiUrl += encodeURIComponent(paramPrompt);
+        modal.style.display = "block";
+        modalResponse.textContent = "Loading...";
+        try {
+            const res = await fetch(apiUrl);
+            const data = await res.json();
+            modalResponse.textContent = JSON.stringify(data, null, 2);
+        } catch (e) {
+            modalResponse.textContent = "Error: " + e.message;
+        }
+    });
 });
-backToTopButton.addEventListener("click", function(e) {
-    e.preventDefault();
-    window.scrollTo({top:0,behavior:"smooth"});
-});
-});
+
+closeBtn.onclick = function() { modal.style.display = "none"; }
+window.onclick = function(event) { if(event.target==modal) modal.style.display = "none"; }
 </script>
 
 </body>
