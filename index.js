@@ -1118,7 +1118,7 @@ app.get("/api/search/otakotaku", async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "Terjadi kesalahan saat memproses data." });
     }
-});
+})
 
 app.get("/api/search/fdroid", async (req, res) => {
     try {     
