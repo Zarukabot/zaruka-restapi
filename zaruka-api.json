@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Zaruka API",
+    "version": "1.0.0",
+    "description": "Dokumentasi lengkap semua endpoint Zaruka API"
+  },
+  "servers": [
+    { "url": "https://domainmu.com" }
+  ],
+  "paths": {
+    "/api/orkut/createpayment": {
+      "get": {
+        "summary": "Create Payment",
+        "parameters": [
+          { "name": "apikey", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "amount", "in": "query", "required": true, "schema": { "type": "number" } },
+          { "name": "codeqr", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Payment created successfully" } }
+      }
+    },
+    "/api/orkut/cekstatus": {
+      "get": {
+        "summary": "Cek Status Payment",
+        "parameters": [
+          { "name": "apikey", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "merchant", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "keyorkut", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Payment status result" } }
+      }
+    },
+
+    "/api/download/aiodl": {
+      "get": { "summary": "Download All (AIO)", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Downloaded file link" } } }
+    },
+    "/api/download/tiktokdl": { "get": { "summary": "Download TikTok video", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "TikTok video URL" } } } },
+    "/api/download/fbdl": { "get": { "summary": "Download Facebook video", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Facebook video URL" } } } },
+    "/api/download/igdl": { "get": { "summary": "Download Instagram video/photo", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Instagram media URL" } } } },
+    "/api/download/ytmp3": { "get": { "summary": "Download YouTube MP3", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "MP3 download URL" } } } },
+    "/api/download/ytmp4": { "get": { "summary": "Download YouTube MP4", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "MP4 download URL" } } } },
+    "/api/download/ytdlv2": { "get": { "summary": "Download YouTube V2", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "YouTube V2 download URL" } } } },
+    "/api/download/capcut": { "get": { "summary": "Download Capcut video", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Capcut video URL" } } } },
+    "/api/download/twitter": { "get": { "summary": "Download Twitter video", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Twitter video URL" } } } },
+    "/api/download/gdrive": { "get": { "summary": "Download Google Drive file", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "GDrive file URL" } } } },
+    "/api/download/mediafire": { "get": { "summary": "Download Mediafire file", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Mediafire file URL" } } } },
+    "/api/download/pindlvid": { "get": { "summary": "Download Pinterest Video", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Pinterest Video URL" } } } },
+    "/api/download/spotify": { "get": { "summary": "Download Spotify", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Spotify URL" } } } },
+    "/api/download/playspotify": { "get": { "summary": "Play Spotify", "parameters": [{ "name": "q", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Play Spotify result" } } } },
+    "/api/download/soundcloud": { "get": { "summary": "Download Soundcloud", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Soundcloud URL" } } } },
+    "/api/download/snackvideo": { "get": { "summary": "Download Snackvideo", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Snackvideo URL" } } } },
+    "/api/download/terabox": { "get": { "summary": "Download Terabox", "parameters": [{ "name": "url", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Terabox URL" } } } },
+
+    "/api/ai/openai": { "get": { "summary": "OpenAI", "parameters": [{ "name": "msg", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "OpenAI response" } } } },
+    "/api/ai/openai-prompt": { "get": { "summary": "OpenAI Prompt", "parameters": [{ "name": "prompt", "in": "query", "required": false, "schema": { "type": "string" } }, { "name": "msg", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "OpenAI Prompt result" } } } },
+    "/api/ai/blackbox": { "get": { "summary": "Blackbox AI", "parameters": [{ "name": "msg", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Blackbox response" } } } },
+    "/api/ai/deepseek": { "get": { "summary": "DeepSeek AI", "parameters": [{ "name": "msg", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "DeepSeek result" } } } },
+    "/api/ai/gpt4": { "get": { "summary": "GPT 4 AI", "parameters": [{ "name": "text", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "GPT4 result" } } } },
+    "/api/ai/gpt-3-5-turbo": { "get": { "summary": "GPT 3.5 Turbo AI", "parameters": [{ "name": "text", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "GPT3.5 Turbo result" } } } },
+    "/api/ai/gemini": { "get": { "summary": "Gemini AI", "parameters": [{ "name": "text", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Gemini result" } } } },
+    "/api/ai/simsimi": { "get": { "summary": "Sim Simi AI", "parameters": [{ "name": "text", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "SimSimi response" } } } }
+
+    // ✅ Selanjutnya bisa tambahkan Tools, Search, Sosmed Stalk, Image Creator, Panel Pterodactyl dengan format sama
+  }
+}
