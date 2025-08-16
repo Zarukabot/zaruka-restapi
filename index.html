@@ -7,168 +7,210 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <style>
-body { background-color:white; font-family:"Poppins",sans-serif; -webkit-tap-highlight-color:transparent; }
+body { background-color:white; font-family:"Poppins",sans-serif; -webkit-tap-highlight-color:transparent; margin:0; padding:0;}
 * { scroll-behavior: smooth; }
-@keyframes colorChange { 0% { color: rgba(0,0,0,0.7); } 50% { color: rgb(84,190,255); } 100% { color: rgba(0,0,0,0.7); } }
-.container { max-width: 800px; margin:0 auto; padding:16px; }
+:root {
+  --primary: #54BEFF;
+  --dark-bg: #111;
+  --light-bg: #fff;
+}
+@keyframes colorChange { 0% { color: rgba(0,0,0,0.7); } 50% { color: var(--primary); } 100% { color: rgba(0,0,0,0.7); } }
+
+body.dark { background-color: var(--dark-bg); color: #eee; }
+.container { max-width: 900px; margin:0 auto; padding:16px; }
 .text-center { text-align:left; padding-bottom:5px; margin:0 15px; }
 .text-center h1 span { font-size:10px; background-color: rgba(0,0,0,0.7); padding:2px 6px; border-radius:8px; color:#fff; }
-.text-purple-700 { color:#6B21A8; }
 .text-center h1 { animation: colorChange 15s infinite alternate; font-weight:550; }
-.link a { color: rgba(0,0,0,0.8); font-size:15px; font-weight:550; text-decoration:none; }
-.link a:hover { color: rgba(84,190,255,1); }
+.link a { color: var(--primary); font-size:15px; font-weight:550; text-decoration:none; }
+.link a:hover { color: #ff9800; }
 .card { margin:2.6rem 4px; }
 .card .title { font-size:22px; font-weight:505; margin:0 10px; color: rgba(0,0,0,0.7); }
 .card .endpoints { display:flex; justify-content:space-between; align-items:center; background-color: rgba(242,242,242,0.5); border-radius:8px; margin:8px 10px; flex-wrap:wrap; padding:8px; }
 .card .endpoints .method { background-color: rgba(0,0,0,0.7); border-radius:8px; padding:2px 7px; font-weight:600; color:white; font-size:15px; margin-bottom:5px; }
 .card .endpoints .name { font-size:14px; font-weight:580; color: rgba(0,0,0,0.7); margin-bottom:5px; }
-.card .endpoints a { background-color: rgba(84,190,255,1); border-radius:8px; padding:2px 7px; font-weight:600; color:white; font-size:15px; text-decoration:none; margin-bottom:5px; }
-.card .endpoints a:hover { background-color: rgba(0,0,0,0.7); }
+.card .endpoints a.try-btn { background-color: var(--primary); border-radius:8px; padding:2px 7px; font-weight:600; color:white; font-size:15px; text-decoration:none; margin-bottom:5px; cursor:pointer; }
+.card .endpoints a.try-btn:hover { background-color: rgba(0,0,0,0.7); }
 .tombol { opacity:0; position:fixed; z-index:99; bottom:25px; right:-50vh; transition:all 0.8s; }
 .tombol.show { right:25px; opacity:1; }
-.tombol button { border:none; padding:15px 15px; border-radius:50px; background-color: rgba(84,190,255,1); }
+.tombol button { border:none; padding:15px 15px; border-radius:50px; background-color: var(--primary); }
 .tombol button:active { background-color: rgba(0,0,0,0.7); }
 .tombol button a { color:white; text-decoration:none; font-size:20px; }
-.response-box { display:none; margin:8px 10px; padding:10px; background:rgba(255,255,255,0.95); backdrop-filter:blur(6px); border-radius:8px; font-size:14px; box-shadow:0 4px 12px rgba(0,0,0,0.15); overflow-x:auto; transform:translateY(-10px); opacity:0; transition: all 0.4s ease; }
+.response-box { display:none; margin:8px 10px; padding:10px; background:rgba(255,255,255,0.95); backdrop-filter:blur(6px); border-radius:8px; font-size:14px; box-shadow:0 4px 12px rgba(0,0,0,0.15); overflow-x:auto; transform:translateY(-10px); opacity:0; transition: all 0.4s ease; position: relative; }
 .response-box.show { display:block; transform:translateY(0); opacity:1; }
 .response-box pre { background: rgba(240,240,240,0.7); padding:6px; border-radius:6px; overflow-x:auto; }
-.try-btn { cursor:pointer; }
+.copy-btn { position:absolute; top:5px; right:5px; background:var(--primary); border:none; color:#fff; padding:4px 8px; font-size:12px; border-radius:6px; cursor:pointer; }
+.copy-btn:hover { background:#ff9800; }
+.dark-toggle { position:fixed; top:15px; right:15px; z-index:100; padding:6px 12px; background:var(--primary); color:#fff; border:none; border-radius:8px; cursor:pointer; }
+.dark-toggle:hover { background:#ff9800; }
 </style>
 </head>
 <body>
+
+<button class="dark-toggle">Toggle Dark</button>
 
 <div class="tombol"><button onclick="scrollToTop()"><i class="fa fa-arrow-up"></i></button></div>
 
 <div class="container">
   <div class="text-center">
     <h1 class="font-bold text-purple-700">Zaruka Api <span>v1.0.0</span></h1>
-    <div class="link"><a href="https://wa.me/6282249787434" class="text-blue-500">Contact the developer</a></div>
-    <div class="link"><a href="https://wa.me/6282249787434" class="text-blue-500">API Development Information</a></div>
+    <div class="link"><a href="https://wa.me/6282249787434">Contact the developer</a></div>
+    <div class="link"><a href="https://wa.me/6282249787434">API Development Information</a></div>
   </div>
 
-  <!-- =================== Orderkuota =================== -->
-  <div class="card">
-    <div class="title">Orderkuota Gateway</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Create Payment</p>
-      <a href="/api/orkut/createpayment?apikey=&amount=&codeqr=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Cek Status</p>
-      <a href="/api/orkut/cekstatus?apikey=&merchant=&keyorkut=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-  </div>
+  <!-- Function to generate endpoints -->
+  <script>
+  const endpoints = [
+    {category:"Orderkuota Gateway", list:[
+      {method:"Get", name:"Create Payment", url:"/api/orkut/createpayment?apikey=&amount=&codeqr="},
+      {method:"Get", name:"Cek Status", url:"/api/orkut/cekstatus?apikey=&merchant=&keyorkut="}
+    ]},
+    {category:"Downloader", list:[
+      {method:"Get", name:"AIO (all downloader)", url:"/api/download/aiodl?url="},
+      {method:"Get", name:"Tiktok", url:"/api/download/tiktokdl?url="},
+      {method:"Get", name:"Facebook", url:"/api/download/fbdl?url="},
+      {method:"Get", name:"Instagram", url:"/api/download/igdl?url="},
+      {method:"Get", name:"Ytmp3", url:"/api/download/ytmp3?url="},
+      {method:"Get", name:"Ytmp4", url:"/api/download/ytmp4?url="},
+      {method:"Get", name:"Youtube V2", url:"/api/download/ytdlv2?url="},
+      {method:"Get", name:"Capcut", url:"/api/download/capcut?url="},
+      {method:"Get", name:"Twitter", url:"/api/download/twitter?url="},
+      {method:"Get", name:"Google Drive", url:"/api/download/gdrive?url="},
+      {method:"Get", name:"Mediafire", url:"/api/download/mediafire?url="},
+      {method:"Get", name:"Pinterest Video", url:"/api/download/pindlvid?url="},
+      {method:"Get", name:"Spotify", url:"/api/download/spotify?url="},
+      {method:"Get", name:"Play Spotify", url:"/api/download/playspotify?q="},
+      {method:"Get", name:"Soundcloud", url:"/api/download/soundcloud?url="},
+      {method:"Get", name:"Snackvideo", url:"/api/download/snackvideo?url="},
+      {method:"Get", name:"Terabox", url:"/api/download/terabox?url="}
+    ]},
+    {category:"Openai", list:[
+      {method:"Get", name:"Openai", url:"/api/ai/openai?msg="},
+      {method:"Get", name:"Openai Prompt", url:"/api/ai/openai-prompt?prompt=&msg="},
+      {method:"Get", name:"Blackbox", url:"/api/ai/blackbox?msg="},
+      {method:"Get", name:"DeepSeek", url:"/api/ai/deepseek?msg="},
+      {method:"Get", name:"GPT 4", url:"/api/ai/gpt4?text="},
+      {method:"Get", name:"GPT 3.5 Turbo", url:"/api/ai/gpt-3-5-turbo?text="},
+      {method:"Get", name:"Gemini", url:"/api/ai/gemini?text="},
+      {method:"Get", name:"Sim Simi", url:"/api/ai/simsimi?msg="}
+    ]},
+    {category:"Tools", list:[
+      {method:"Get", name:"OCR", url:"/api/tools/ocr?url="},
+      {method:"Get", name:"Shortlink Tinyurl", url:"/api/tools/tinyurl?url="},
+      {method:"Get", name:"Shortlink Isgd", url:"/api/tools/isgd?url="},
+      {method:"Get", name:"Whois Domain", url:"/api/tools/whois?domain="}
+    ]},
+    {category:"Search", list:[
+      {method:"Get", name:"Google Image", url:"/api/search/gimage?q="},
+      {method:"Get", name:"Pinterest", url:"/api/search/pinterest?q="},
+      {method:"Get", name:"Playstore", url:"/api/search/playstore?q="},
+      {method:"Get", name:"Fdroid", url:"/api/search/fdroid?q="},
+      {method:"Get", name:"Youtube Search", url:"/api/search/ytsearch?q="},
+      {method:"Get", name:"Happymod", url:"/api/search/happymod?q="},
+      {method:"Get", name:"Sfilemobi", url:"/api/search/sfile?q="},
+      {method:"Get", name:"Tiktok Search", url:"/api/search/tiktoksearch?q="},
+      {method:"Get", name:"NPM Search", url:"/api/search/npm?q="},
+      {method:"Get", name:"Lyrics", url:"/api/search/lyrics?q="}
+    ]},
+    {category:"Sosmed Stalk", list:[
+      {method:"Get", name:"Tiktok Stalk", url:"/api/tools/tiktokstalk?user="},
+      {method:"Get", name:"Instagram Stalk", url:"/api/tools/igstalk?username="},
+      {method:"Get", name:"Github Stalk", url:"/api/tools/githubstalk?user="},
+      {method:"Get", name:"NPM Stalk", url:"/api/tools/npmstalk?pkgname="},
+      {method:"Get", name:"Youtube Stalk", url:"/api/tools/youtubestalk?user="}
+    ]},
+    {category:"Image Creator", list:[
+      {method:"Get", name:"Brat", url:"/api/imagecreator/bratgenerator?text="},
+      {method:"Get", name:"Emoji Mix", url:"/api/imagecreator/emojimix?emoji1=&emoji2="},
+      {method:"Get", name:"Emoji To Gif", url:"/api/imagecreator/emojitogif?emoji="},
+      {method:"Get", name:"Remini", url:"/api/imagecreator/remini?url="},
+      {method:"Get", name:"Removebg", url:"/api/imagecreator/removebg?url="},
+      {method:"Get", name:"Upscale", url:"/api/imagecreator/upscale?url="},
+      {method:"Get", name:"Quotely", url:"/api/imagecreator/qc?text=&fotoUrl=&nama="}
+    ]},
+    {category:"Panel Pterodactyl", list:[
+      {method:"Get", name:"Create Panel", url:"/api/pterodactyl/create?username=&ram=&disk=&cpu=&eggid=&nestid=&loc=&domain=&ptla=&ptlc="},
+      {method:"Get", name:"List Panel", url:"/api/pterodactyl/listpanel?eggid=&nestid=&loc=&domain=&ptla=&ptlc="},
+      {method:"Get", name:"Delete Panel", url:"/api/pterodactyl/delete?idserver=&domain=&ptla="}
+    ]}
+  ];
 
-  <!-- =================== Downloader =================== -->
-  <div class="card">
-    <div class="title">Downloader</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">AIO (all downloader)</p>
-      <a href="/api/download/aiodl?url=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <!-- Tambahkan semua endpoint downloader lain dengan pola yang sama -->
-  </div>
-
-  <!-- =================== OpenAI =================== -->
-  <div class="card">
-    <div class="title">Openai</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Openai</p>
-      <a href="/api/ai/openai?msg=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <!-- Tambahkan semua endpoint OpenAI lain dengan pola yang sama -->
-  </div>
-
-  <!-- =================== Tools =================== -->
-  <div class="card">
-    <div class="title">Tools</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">OCR</p>
-      <a href="/api/tools/ocr?url=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <!-- Tambahkan semua endpoint Tools lain -->
-  </div>
-
-  <!-- =================== Search =================== -->
-  <div class="card">
-    <div class="title">Search</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Google Image</p>
-      <a href="/api/search/gimage?q=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <!-- Tambahkan semua endpoint Search lain -->
-  </div>
-
-  <!-- =================== Sosmed Stalk =================== -->
-  <div class="card">
-    <div class="title">Sosmed Stalk</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Tiktok Stalk</p>
-      <a href="/api/tools/tiktokstalk?user=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-    <!-- Tambahkan endpoint Sosmed Stalk lain -->
-  </div>
-
-  <!-- =================== Image Creator =================== -->
-  <div class="card">
-    <div class="title">Image Creator</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Text to Image</p>
-      <a href="/api/image/text2img?text=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-  </div>
-
-  <!-- =================== Panel Pterodactyl =================== -->
-  <div class="card">
-    <div class="title">Panel Pterodactyl</div>
-    <div class="endpoints">
-      <p class="method">Get</p><p class="name">Get Server Info</p>
-      <a href="/api/ptero/getserver?apikey=&serverid=" class="try-btn">Try</a>
-      <div class="response-box"><strong>Endpoint:</strong> <span class="api-url"></span><br><strong>Response:</strong><pre class="api-response">Klik Try untuk melihat response</pre></div>
-    </div>
-  </div>
-
-</div>
+  const container = document.querySelector('.container');
+  endpoints.forEach(cat => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const title = document.createElement('div');
+    title.classList.add('title');
+    title.textContent = cat.category;
+    card.appendChild(title);
+    cat.list.forEach(ep => {
+      const epDiv = document.createElement('div');
+      epDiv.classList.add('endpoints');
+      epDiv.innerHTML = `
+        <p class="method">${ep.method}</p>
+        <p class="name">${ep.name}</p>
+        <a href="${ep.url}" class="try-btn">Try</a>
+        <div class="response-box">
+          <button class="copy-btn">Copy</button>
+          <strong>Endpoint:</strong> <span class="api-url"></span><br>
+          <strong>Response:</strong> <pre class="api-response">Klik Try untuk melihat response</pre>
+        </div>
+      `;
+      card.appendChild(epDiv);
+    });
+    container.appendChild(card);
+  });
+  </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function(){
   const backToTopButton = document.querySelector(".tombol");
   window.addEventListener("scroll", function() {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.scrollY;
-    if (scrollPosition > scrollHeight * 0.10) backToTopButton.classList.add("show");
+    if(scrollPosition > scrollHeight*0.10) backToTopButton.classList.add("show");
     else backToTopButton.classList.remove("show");
   });
 });
-function scrollToTop() { window.scrollTo({ top:0, behavior:"smooth" }); }
 
-document.querySelectorAll(".try-btn").forEach(btn => {
-  btn.addEventListener("click", async (e) => {
+// Scroll to top
+function scrollToTop() { window.scrollTo({top:0,behavior:"smooth"}); }
+
+// Dark mode toggle
+document.querySelector(".dark-toggle").addEventListener("click", ()=>{
+  document.body.classList.toggle("dark");
+});
+
+// Try button fetch
+document.addEventListener("click", async e=>{
+  if(e.target.matches(".try-btn")){
     e.preventDefault();
-    const endpointsDiv = btn.closest(".endpoints");
-    const responseBox = endpointsDiv.querySelector(".response-box");
-    const apiUrlSpan = responseBox.querySelector(".api-url");
-    const apiResponsePre = responseBox.querySelector(".api-response");
-    apiUrlSpan.textContent = btn.href;
-    apiResponsePre.textContent = "Loading...";
-    if (!responseBox.classList.contains("show")) responseBox.classList.add("show");
-    try {
+    const btn = e.target;
+    const epDiv = btn.closest(".endpoints");
+    const respBox = epDiv.querySelector(".response-box");
+    const apiUrl = respBox.querySelector(".api-url");
+    const apiResp = respBox.querySelector(".api-response");
+    apiUrl.textContent = btn.href;
+    apiResp.textContent = "Loading...";
+    respBox.classList.add("show");
+    try{
       const res = await fetch(btn.href);
       const data = await res.json();
-      apiResponsePre.textContent = JSON.stringify(data,null,2);
-    } catch(err) {
-      apiResponsePre.textContent = "Error: " + err.message;
+      apiResp.textContent = JSON.stringify(data,null,2);
+    } catch(err){
+      apiResp.textContent = "Error: "+err.message;
     }
-  });
+  }
+
+  // Copy button
+  if(e.target.matches(".copy-btn")){
+    const box = e.target.closest(".response-box");
+    const apiUrl = box.querySelector(".api-url").textContent;
+    const apiResp = box.querySelector(".api-response").textContent;
+    navigator.clipboard.writeText("Endpoint: "+apiUrl+"\nResponse:\n"+apiResp);
+    alert("Copied to clipboard!");
+  }
 });
 </script>
+
 </body>
 </html>
