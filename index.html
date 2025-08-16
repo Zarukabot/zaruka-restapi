@@ -5,189 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zaruka Api</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
 <style>
-body { background:white; font-family:"Poppins",sans-serif; margin:0; padding:0;}
-.container { max-width:900px; margin:0 auto; padding:16px;}
-.text-center { text-align:left; margin:0 15px; padding-bottom:5px;}
-.text-center h1 span { font-size:10px; background:rgba(0,0,0,0.7); padding:2px 6px; border-radius:8px; color:white;}
-.text-purple-700 { color:#6B21A8; }
-.text-center h1 { font-weight:550; animation: colorChange 15s infinite alternate; }
-@keyframes colorChange {0%{color:rgba(0,0,0,0.7);}50%{color:rgb(84,190,255);}100%{color:rgba(0,0,0,0.7);}}
-.link a { color: rgba(0,0,0,0.8); font-size:15px; font-weight:550; text-decoration:none;}
-.link a:hover { color: #54beff; }
-.card { margin: 2.6rem 4px;}
-.card .title { font-size:22px; font-weight:505; margin:0 10px; color:rgba(0,0,0,0.7);}
-.card .endpoints { display:flex; justify-content:space-between; align-items:center; background:rgba(242,242,242,0.5); border-radius:8px; margin:8px 10px; height:55px; position:relative; }
-.card .endpoints .method { background: rgba(0,0,0,0.7); border-radius:8px; padding:2px 7px; margin:8px 8px; font-weight:600; color:white; font-size:15px;}
-.card .endpoints a { background: #54beff; border-radius:8px; padding:2px 7px; margin:8px 8px; font-weight:600; color:white; font-size:15px; text-decoration:none;}
-.card .endpoints a:hover { background: rgba(0,0,0,0.7);}
-.card .endpoints .name { font-size:14px; font-weight:580; color: rgba(0,0,0,0.7); }
-
-/* Popup Response */
-.response-box {
-  position: absolute; left:0; top:100%; margin-top:8px;
-  background: rgba(255,255,255,0.95); backdrop-filter: blur(6px);
-  border-radius:8px; padding:10px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.25);
-  display:none; opacity:0; transform:translateY(20px);
-  transition: all 0.4s ease;
-  z-index:10; min-width:350px; max-width:850px; width:100%;
-  white-space: pre-wrap; word-break: break-word;
-}
-.response-box.show { display:block; opacity:1; transform:translateY(0);}
-.response-box button.copy-btn { border:none; background:#54beff; color:white; padding:5px 10px; border-radius:5px; cursor:pointer; margin-bottom:5px; }
-
-.spinner { border:4px solid rgba(0,0,0,0.1); border-top:4px solid #54beff; border-radius:50%; width:25px; height:25px; animation: spin 1s linear infinite; display:inline-block; margin-right:5px; vertical-align:middle;}
-@keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-
-.tombol { opacity:0; position: fixed; z-index:99; bottom:25px; right:-50vh; transition: all 0.8s; }
-.tombol.show { right:25px; opacity:1; }
-.tombol button { border:none; padding:15px; border-radius:50px; background: #54beff; cursor:pointer; }
-.tombol button a { color:white; text-decoration:none; font-size:20px; }
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: #fff;
+    -webkit-tap-highlight-color: transparent;
+  }
+  * { scroll-behavior: smooth; }
+  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+  .text-center { text-align: left; padding-bottom: 5px; margin: 0 15px; }
+  .text-center h1 { font-weight: 550; animation: colorChange 15s infinite alternate; }
+  @keyframes colorChange {
+    0% { color: rgba(0, 0, 0, 0.7); }
+    50% { color: rgb(84, 190, 255); }
+    100% { color: rgba(0, 0, 0, 0.7); }
+  }
+  .text-center h1 span { font-size: 10px; background-color: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 8px; color:#fff;}
+  .link a { color: rgba(0,0,0,0.8); font-size:15px; font-weight:550; display:block; margin:2px 0; text-decoration:none; }
+  .link a:hover { color: rgb(84, 190, 255); }
+  .card { margin: 2.6rem 4px; border-radius: 10px; background: rgba(242,242,242,0.5); padding:10px; backdrop-filter: blur(8px);}
+  .card .title { font-size: 22px; font-weight: 505; margin: 10px; color: rgba(0,0,0,0.7);}
+  .endpoints { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.5); border-radius:8px; margin: 8px 10px; padding:8px; cursor:pointer; position:relative; transition:0.3s;}
+  .endpoints:hover { background: rgba(84,190,255,0.1); }
+  .method { background-color: rgba(0,0,0,0.7); border-radius:8px; padding:2px 7px; color:#fff; font-weight:600; }
+  .name { font-size:14px; font-weight:580; color: rgba(0,0,0,0.7);}
+  .endpoints button.try-btn { background: rgba(84,190,255,1); border:none; border-radius:8px; padding:2px 7px; color:#fff; font-weight:600; cursor:pointer; transition:0.3s;}
+  .endpoints button.try-btn:hover { background: rgba(0,0,0,0.7);}
+  .popup { display:none; margin:5px 10px; padding:10px; border-radius:8px; background: rgba(0,0,0,0.05); backdrop-filter: blur(5px); animation: fadeIn 0.3s; font-family: monospace; white-space: pre-wrap; }
+  @keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
 </style>
 </head>
 <body>
-<div class="tombol"><button><a class="fa fa-arrow-up" href="#"></a></button></div>
 <div class="container">
   <div class="text-center">
-    <h1 class="font-bold text-purple-700">Zaruka Api <span>v1.0.0</span></h1>
-    <div class="link"><a href="https://wa.me/6282249787434">Contact the developer</a></div>
-    <div class="link"><a href="https://wa.me/6282249787434">API Development Information</a></div>
+    <h1>Zaruka Api <span>v1.0.0</span></h1>
+    <div class="link">
+      <a href="https://wa.me/6282249787434">Contact the developer</a>
+      <a href="https://wa.me/6282249787434">API Development Information</a>
+    </div>
   </div>
+
+  <!-- Container untuk semua card -->
+  <div id="api-cards"></div>
 </div>
 
 <script>
-// Semua API endpoints lengkap
-const endpoints = [
-  {category:"Orderkuota Gateway", list:[
-    {method:"Get", name:"Create Payment", url:"/api/orkut/createpayment?apikey=&amount=&codeqr="},
-    {method:"Get", name:"Cek Status", url:"/api/orkut/cekstatus?apikey=&merchant=&keyorkut="}
-  ]},
-  {category:"Downloader", list:[
-    {method:"Get", name:"AIO", url:"/api/download/aiodl?url="},
-    {method:"Get", name:"Tiktok", url:"/api/download/tiktokdl?url="},
-    {method:"Get", name:"Facebook", url:"/api/download/fbdl?url="},
-    {method:"Get", name:"Instagram", url:"/api/download/igdl?url="},
-    {method:"Get", name:"Ytmp3", url:"/api/download/ytmp3?url="},
-    {method:"Get", name:"Ytmp4", url:"/api/download/ytmp4?url="},
-    {method:"Get", name:"Youtube V2", url:"/api/download/ytdlv2?url="},
-    {method:"Get", name:"Capcut", url:"/api/download/capcut?url="},
-    {method:"Get", name:"Twitter", url:"/api/download/twitter?url="},
-    {method:"Get", name:"Google Drive", url:"/api/download/gdrive?url="},
-    {method:"Get", name:"Mediafire", url:"/api/download/mediafire?url="},
-    {method:"Get", name:"Pinterest Video", url:"/api/download/pindlvid?url="},
-    {method:"Get", name:"Spotify", url:"/api/download/spotify?url="},
-    {method:"Get", name:"Play Spotify", url:"/api/download/playspotify?q="},
-    {method:"Get", name:"Soundcloud", url:"/api/download/soundcloud?url="},
-    {method:"Get", name:"Snackvideo", url:"/api/download/snackvideo?url="},
-    {method:"Get", name:"Terabox", url:"/api/download/terabox?url="}
-  ]},
-  {category:"Openai", list:[
-    {method:"Get", name:"Openai", url:"/api/ai/openai?msg="},
-    {method:"Get", name:"Openai Prompt", url:"/api/ai/openai-prompt?prompt=&msg="},
-    {method:"Get", name:"Blackbox", url:"/api/ai/blackbox?msg="},
-    {method:"Get", name:"DeepSeek", url:"/api/ai/deepseek?msg="},
-    {method:"Get", name:"GPT 4", url:"/api/ai/gpt4?text="},
-    {method:"Get", name:"GPT 3.5 Turbo", url:"/api/ai/gpt-3-5-turbo?text="},
-    {method:"Get", name:"Gemini", url:"/api/ai/gemini?text="},
-    {method:"Get", name:"Sim Simi", url:"/api/ai/simsimi?msg="}
-  ]},
-  {category:"Tools", list:[
-    {method:"Get", name:"OCR", url:"/api/tools/ocr?url="},
-    {method:"Get", name:"Shortlink Tinyurl", url:"/api/tools/tinyurl?url="},
-    {method:"Get", name:"Shortlink Isgd", url:"/api/tools/isgd?url="},
-    {method:"Get", name:"Whois Domain", url:"/api/tools/whois?domain="}
-  ]},
-  {category:"Search", list:[
-    {method:"Get", name:"Google Image", url:"/api/search/gimage?q="},
-    {method:"Get", name:"Pinterest", url:"/api/search/pinterest?q="},
-    {method:"Get", name:"Playstore", url:"/api/search/playstore?q="},
-    {method:"Get", name:"Wikipedia", url:"/api/search/wiki?q="}
-  ]}
-];
+  // Fetch api.json dan generate card
+  fetch('api.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('api-cards');
+      data.forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.innerText = cat.category;
+        card.appendChild(title);
 
-const container = document.querySelector('.container');
-endpoints.forEach(cat=>{
-  const card = document.createElement('div');
-  card.classList.add('card');
-  const title = document.createElement('div');
-  title.classList.add('title');
-  title.textContent = cat.category;
-  card.appendChild(title);
-  cat.list.forEach(ep=>{
-    const epDiv = document.createElement('div');
-    epDiv.classList.add('endpoints');
-    epDiv.innerHTML = `
-      <p class="method">${ep.method}</p>
-      <p class="name">${ep.name}</p>
-      <a href="${ep.url}" class="try-btn">Try</a>
-      <div class="response-box">
-        <button class="copy-btn">Copy</button>
-        <div><span class="spinner"></span>Loading...</div>
-        <strong>Endpoint:</strong> <span class="api-url"></span><br>
-        <strong>Response:</strong> <pre class="api-response"></pre>
-      </div>
-    `;
-    card.appendChild(epDiv);
-  });
-  container.appendChild(card);
-});
+        cat.list.forEach(ep => {
+          const epDiv = document.createElement('div');
+          epDiv.className = 'endpoints';
+          epDiv.innerHTML = `
+            <p class="method">${ep.method}</p>
+            <p class="name">${ep.name}</p>
+            <button class="try-btn">Try</button>
+          `;
+          // Popup untuk response
+          const popup = document.createElement('div');
+          popup.className = 'popup';
+          epDiv.appendChild(popup);
 
-// Back to top
-document.addEventListener("DOMContentLoaded", function(){
-  const backToTopButton = document.querySelector(".tombol");
-  window.addEventListener("scroll", function() {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPosition = window.scrollY;
-    if(scrollPosition > scrollHeight*0.10) backToTopButton.classList.add("show");
-    else backToTopButton.classList.remove("show");
-  });
-});
-function scrollToTop() { window.scrollTo({top:0,behavior:"smooth"}); }
+          epDiv.querySelector('.try-btn').addEventListener('click', async () => {
+            // toggle popup
+            if(popup.style.display === 'block') {
+              popup.style.display = 'none';
+              return;
+            }
+            popup.style.display = 'block';
+            popup.innerText = 'Loading...';
 
-// Try button fetch + Copy + popup hilang dulu
-let activePopup = null;
-document.addEventListener("click", async e=>{
-  if(e.target.matches(".try-btn")){
-    e.preventDefault();
-    const btn = e.target;
-    const epDiv = btn.closest(".endpoints");
-    const respBox = epDiv.querySelector(".response-box");
+            try {
+              const response = await fetch(ep.url);
+              const json = await response.json();
+              popup.innerText = JSON.stringify(json, null, 2);
+            } catch(err) {
+              popup.innerText = 'Error: ' + err.message;
+            }
+          });
 
-    // Hide previous popup
-    if(activePopup && activePopup!==respBox){
-      activePopup.classList.remove("show");
-    }
-    activePopup = respBox;
+          card.appendChild(epDiv);
+        });
 
-    const apiUrl = respBox.querySelector(".api-url");
-    const apiResp = respBox.querySelector(".api-response");
-    const spinnerDiv = respBox.querySelector("div");
-    apiUrl.textContent = btn.href;
-    apiResp.textContent = "";
-    spinnerDiv.style.display = "inline-block";
-    respBox.classList.add("show");
-
-    try{
-      const res = await fetch(btn.href);
-      const data = await res.json();
-      apiResp.textContent = JSON.stringify(data,null,2);
-    } catch(err){
-      apiResp.textContent = "Error: "+err.message;
-    } finally{
-      spinnerDiv.style.display = "none";
-    }
-  }
-
-  if(e.target.matches(".copy-btn")){
-    const box = e.target.closest(".response-box");
-    const apiUrl = box.querySelector(".api-url").textContent;
-    const apiResp = box.querySelector(".api-response").textContent;
-    navigator.clipboard.writeText("Endpoint: "+apiUrl+"\nResponse:\n"+apiResp);
-    alert("Copied to clipboard!");
-  }
-});
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error(err));
 </script>
 </body>
 </html>
