@@ -1,252 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zaruka API Docs</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #54beff;
-  --dark: #1e1e2e;
-  --light: #ffffff;
-  --gray: #f1f1f1;
-  --card-bg: rgba(255,255,255,0.7);
-  --shadow: 0 8px 24px rgba(0,0,0,.12);
-}
-body {
-  font-family: "Poppins", sans-serif;
-  background: var(--gray);
-  margin: 0;
-  padding: 0;
-  transition: background .3s, color .3s;
-}
-body.dark {
-  background: var(--dark);
-  color: #eee;
-  --card-bg: rgba(30,30,46,0.7);
-}
-header {
-  padding: 20px;
-  text-align: center;
-  background: var(--primary);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-header h1 { margin: 0; font-weight: 600; }
-.container { max-width: 1000px; margin: auto; padding: 20px; }
-.card {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 15px;
-  margin: 20px 0;
-  box-shadow: var(--shadow);
-}
-.card .title {
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.card .endpoints {
-  display: none;
-  margin-top: 10px;
-  flex-direction: column;
-  gap: 10px;
-}
-.endpoint {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.05);
-  transition: .2s;
-}
-body.dark .endpoint { background: rgba(255,255,255,0.05); }
-.endpoint:hover { transform: translateX(4px); }
-.method {
-  font-weight: 600;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  color: white;
-}
-.GET { background: #2ecc71; }
-.POST { background: #3498db; }
-.PUT { background: #f39c12; }
-.DELETE { background: #e74c3c; }
-.endpoint a {
-  background: var(--primary);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-}
-.endpoint a:hover { background: #333; }
-/* Modal */
-.api-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:100; align-items:center; justify-content:center; }
-.api-modal-content {
-  background: var(--card-bg);
-  backdrop-filter: blur(15px);
-  border-radius: 12px;
-  padding: 20px;
-  width: 90%;
-  max-width: 900px;
-  display: flex;
-  gap: 20px;
-  box-shadow: var(--shadow);
-}
-.api-left { flex:2; }
-.api-left textarea, .api-left input, .api-left select { width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #ccc; }
-.api-history { flex:1; overflow-y:auto; max-height:500px; font-size:13px; }
-.history-item { padding:6px; border-bottom:1px solid #ddd; cursor:pointer; }
-.history-item:hover { background: rgba(84,190,255,0.1); }
-.api-response-box {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  font-family: monospace;
-  white-space: pre-wrap;
-  padding: 10px;
-  border-radius: 8px;
-  height: 250px;
-  overflow:auto;
-  margin-top:10px;
-  font-size: 13px;
-}
-/* Dark mode toggle */
-.toggle-dark {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaruka API Full Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.33.0/swagger-ui.css" />
 </head>
 <body>
-<header>
-  <h1>Zaruka API Docs <span style="font-size:12px;">v1.0.0</span></h1>
-  <i class="fa-solid fa-moon toggle-dark" id="toggleDark"></i>
-</header>
+  <div id="swagger-ui"></div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.33.0/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.33.0/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = () => {
+      const spec = {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Zaruka API Full Documentation",
+          "version": "1.0.0",
+          "description": "Seluruh endpoint Zaruka API siap dicoba dari browser."
+        },
+        "servers": [
+          { "url": "https://domainmu.com" }  // Ganti dengan base URL milikmu
+        ],
+        "paths": {
+          /* ====== DOWNLOAD ====== */
+          "/api/download/aiodl": { "get": { "summary": "All Downloader", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Download result"}} } },
+          "/api/download/tiktokdl": { "get": { "summary":"TikTok Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"TikTok video"}} } },
+          "/api/download/fbdl": { "get": { "summary":"Facebook Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Facebook video"}} } },
+          "/api/download/igdl": { "get": { "summary":"Instagram Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Instagram media"}} } },
+          "/api/download/ytmp3": { "get": { "summary":"YouTube MP3", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"MP3 result"}} } },
+          "/api/download/ytmp4": { "get": { "summary":"YouTube MP4", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"MP4 result"}} } },
+          "/api/download/ytdlv2": { "get": { "summary":"YouTube V2", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"YouTube V2 media"}} } },
+          "/api/download/capcut": { "get": { "summary":"Capcut Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Capcut media"}} } },
+          "/api/download/twitter": { "get": { "summary":"Twitter Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Twitter media"}} } },
+          "/api/download/gdrive": { "get": { "summary":"Google Drive Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"GDrive media"}} } },
+          "/api/download/mediafire": { "get": { "summary":"Mediafire Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Mediafire media"}} } },
+          "/api/download/pindlvid": { "get": { "summary":"Pinterest Video Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Pinterest video"}} } },
+          "/api/download/spotify": { "get": { "summary":"Spotify Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Spotify media"}} } },
+          "/api/download/playspotify": { "get": { "summary":"Play Spotify", "parameters":[{"name":"q","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Spotify play result"}} } },
+          "/api/download/soundcloud": { "get": { "summary":"Soundcloud Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Soundcloud media"}} } },
+          "/api/download/snackvideo": { "get": { "summary":"SnackVideo Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"SnackVideo media"}} } },
+          "/api/download/terabox": { "get": { "summary":"Terabox Download", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Terabox media"}} } },
 
-<div class="container">
+          /* ====== AI ====== */
+          "/api/ai/openai": { "get": { "summary":"Openai", "parameters":[{"name":"msg","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Openai response"}} } },
+          "/api/ai/openai-prompt": { "get": { "summary":"Openai Prompt", "parameters":[{"name":"prompt","in":"query","required":true,"schema":{"type":"string"}},{"name":"msg","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Openai prompt response"}} } },
+          "/api/ai/blackbox": { "get": { "summary":"Blackbox", "parameters":[{"name":"msg","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Blackbox response"}} } },
+          "/api/ai/deepseek": { "get": { "summary":"DeepSeek", "parameters":[{"name":"msg","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"DeepSeek response"}} } },
+          "/api/ai/gpt4": { "get": { "summary":"GPT 4", "parameters":[{"name":"text","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"GPT 4 response"}} } },
+          "/api/ai/gpt-3-5-turbo": { "get": { "summary":"GPT 3.5 Turbo", "parameters":[{"name":"text","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"GPT 3.5 Turbo response"}} } },
+          "/api/ai/gemini": { "get": { "summary":"Gemini", "parameters":[{"name":"text","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Gemini response"}} } },
+          "/api/ai/simsimi": { "get": { "summary":"Sim Simi", "parameters":[{"name":"msg","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Sim Simi response"}} } },
 
-<!-- Downloader -->
-<div class="card">
-  <div class="title">Downloader <i class="fa fa-chevron-down"></i></div>
-  <div class="endpoints">
-    <div class="endpoint"><span class="method GET">GET</span><span>TikTok</span><a href="/api/download/tiktokdl?url=">Try</a></div>
-    <div class="endpoint"><span class="method GET">GET</span><span>YouTube MP3</span><a href="/api/download/ytmp3?url=">Try</a></div>
-    <div class="endpoint"><span class="method GET">GET</span><span>Instagram</span><a href="/api/download/igdl?url=">Try</a></div>
-  </div>
-</div>
+          /* ====== TOOLS ====== */
+          "/api/tools/ocr": { "get": { "summary":"OCR", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"OCR result"}} } },
+          "/api/tools/skiplink": { "get": { "summary":"Skiplink", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Skiplink result"}} } },
+          "/api/tools/shortlink": { "get": { "summary":"Shortlink", "parameters":[{"name":"url","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Shortlink result"}} } },
 
-<!-- Tools -->
-<div class="card">
-  <div class="title">Tools <i class="fa fa-chevron-down"></i></div>
-  <div class="endpoints">
-    <div class="endpoint"><span class="method GET">GET</span><span>Shortlink Bypass</span><a href="/api/tools/skiplink?url=">Try</a></div>
-    <div class="endpoint"><span class="method GET">GET</span><span>OCR</span><a href="/api/tools/ocr?url=">Try</a></div>
-    <div class="endpoint"><span class="method GET">GET</span><span>Generate QR</span><a href="/api/tools/qrcode?text=">Try</a></div>
-  </div>
-</div>
+          /* ====== SOSMED STALK ====== */
+          "/api/stalk/instagram": { "get": { "summary":"Stalk Instagram", "parameters":[{"name":"username","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Instagram profile"}} } },
+          "/api/stalk/tiktok": { "get": { "summary":"Stalk TikTok", "parameters":[{"name":"username","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"TikTok profile"}} } },
+          "/api/stalk/twitter": { "get": { "summary":"Stalk Twitter", "parameters":[{"name":"username","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"Twitter profile"}} } },
 
-<!-- Search -->
-<div class="card">
-  <div class="title">Search <i class="fa fa-chevron-down"></i></div>
-  <div class="endpoints">
-    <div class="endpoint"><span class="method GET">GET</span><span>Google Search</span><a href="/api/search/google?q=">Try</a></div>
-    <div class="endpoint"><span class="method GET">GET</span><span>Image Search</span><a href="/api/search/image?q=">Try</a></div>
-  </div>
-</div>
+          /* ====== IMAGE CREATOR ====== */
+          "/api/image/ai-image": { "get": { "summary":"AI Image Generator", "parameters":[{"name":"prompt","in":"query","required":true,"schema":{"type":"string"}}], "responses":{"200":{"description":"AI generated image"}} } }
 
-<!-- OpenAI -->
-<div class="card">
-  <div class="title">OpenAI <i class="fa fa-chevron-down"></i></div>
-  <div class="endpoints">
-    <div class="endpoint"><span class="method POST">POST</span><span>ChatGPT</span><a href="/api/ai/openai">Try</a></div>
-    <div class="endpoint"><span class="method POST">POST</span><span>Image Generate</span><a href="/api/ai/image">Try</a></div>
-  </div>
-</div>
+          // Tambahkan Panel Pterodactyl & endpoint lain jika ada, pakai format sama
+        }
+      };
 
-</div>
-
-<!-- Modal -->
-<div id="apiModal" class="api-modal">
-  <div class="api-modal-content">
-    <div class="api-left">
-      <h3>API Tester</h3>
-      <select id="apiMethod"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select>
-      <input type="text" id="modalApiUrl" placeholder="Masukkan API URL">
-      <textarea id="apiHeaders" placeholder='{"Authorization":"Bearer ..."}'></textarea>
-      <textarea id="apiBody" placeholder='Masukkan body JSON'></textarea>
-      <button id="sendApiBtn">Send</button>
-      <button id="closeApiModal" style="background:red;color:white;">Close</button>
-      <pre id="apiResponse" class="api-response-box">Response akan muncul di sini...</pre>
-    </div>
-    <div class="api-history">
-      <h4>History</h4>
-      <div id="historyList"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-document.querySelectorAll(".card .title").forEach(title=>{
-  title.addEventListener("click", ()=>{
-    const endpoints = title.nextElementSibling;
-    endpoints.style.display = endpoints.style.display==="flex"?"none":"flex";
-  });
-});
-
-document.getElementById("toggleDark").addEventListener("click", ()=>{
-  document.body.classList.toggle("dark");
-});
-
-const modal = document.getElementById("apiModal");
-const apiUrlInput = document.getElementById("modalApiUrl");
-const apiResponse = document.getElementById("apiResponse");
-const historyList = document.getElementById("historyList");
-
-document.querySelectorAll(".endpoint a").forEach(a=>{
-  a.addEventListener("click", e=>{
-    e.preventDefault();
-    apiUrlInput.value = a.href;
-    apiResponse.textContent="Loading...";
-    modal.style.display="flex";
-  });
-});
-
-document.getElementById("closeApiModal").onclick=()=>modal.style.display="none";
-window.addEventListener("keydown", e=>{ if(e.key==="Escape") modal.style.display="none"; });
-
-document.getElementById("sendApiBtn").onclick = async ()=>{
-  const url = apiUrlInput.value;
-  const method = document.getElementById("apiMethod").value;
-  let headers={}, body;
-  try{ headers=JSON.parse(document.getElementById("apiHeaders").value) }catch{}
-  try{ body=JSON.parse(document.getElementById("apiBody").value) }catch{}
-  try{
-    const res = await fetch(url, { method, headers, body: body?JSON.stringify(body):undefined });
-    const data = await res.json();
-    apiResponse.textContent = JSON.stringify(data,null,2);
-    const hItem = document.createElement("div");
-    hItem.className="history-item";
-    hItem.textContent = `${method} ${url}`;
-    hItem.onclick = ()=> { apiUrlInput.value=url; apiResponse.textContent=JSON.stringify(data,null,2); };
-    historyList.prepend(hItem);
-  }catch(err){ apiResponse.textContent = err; }
-};
-</script>
+      SwaggerUIBundle({
+        spec: spec,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout"
+      });
+    };
+  </script>
 </body>
 </html>
