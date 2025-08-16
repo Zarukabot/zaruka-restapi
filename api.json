@@ -1,0 +1,98 @@
+[
+  {
+    "category": "Orderkuota Gateway",
+    "list": [
+      {"method":"Get","name":"Create Payment","url":"/api/orkut/createpayment?apikey=&amount=&codeqr="},
+      {"method":"Get","name":"Cek Status","url":"/api/orkut/cekstatus?apikey=&merchant=&keyorkut="}
+    ]
+  },
+  {
+    "category": "Downloader",
+    "list": [
+      {"method":"Get","name":"AIO (all downloader)","url":"/api/download/aiodl?url="},
+      {"method":"Get","name":"Tiktok","url":"/api/download/tiktokdl?url="},
+      {"method":"Get","name":"Facebook","url":"/api/download/fbdl?url="},
+      {"method":"Get","name":"Instagram","url":"/api/download/igdl?url="},
+      {"method":"Get","name":"Ytmp3","url":"/api/download/ytmp3?url="},
+      {"method":"Get","name":"Ytmp4","url":"/api/download/ytmp4?url="},
+      {"method":"Get","name":"Youtube V2","url":"/api/download/ytdlv2?url="},
+      {"method":"Get","name":"Capcut","url":"/api/download/capcut?url="},
+      {"method":"Get","name":"Twitter","url":"/api/download/twitter?url="},
+      {"method":"Get","name":"Google Drive","url":"/api/download/gdrive?url="},
+      {"method":"Get","name":"Mediafire","url":"/api/download/mediafire?url="},
+      {"method":"Get","name":"Pinterest Video","url":"/api/download/pindlvid?url="},
+      {"method":"Get","name":"Spotify","url":"/api/download/spotify?url="},
+      {"method":"Get","name":"Play Spotify","url":"/api/download/playspotify?q="},
+      {"method":"Get","name":"Soundcloud","url":"/api/download/soundcloud?url="},
+      {"method":"Get","name":"Snackvideo","url":"/api/download/snackvideo?url="},
+      {"method":"Get","name":"Terabox","url":"/api/download/terabox?url="}
+    ]
+  },
+  {
+    "category": "Openai",
+    "list": [
+      {"method":"Get","name":"Openai","url":"/api/ai/openai?msg="},
+      {"method":"Get","name":"Openai Prompt","url":"/api/ai/openai-prompt?prompt=&msg="},
+      {"method":"Get","name":"Blackbox","url":"/api/ai/blackbox?msg="},
+      {"method":"Get","name":"DeepSeek","url":"/api/ai/deepseek?msg="},
+      {"method":"Get","name":"GPT 4","url":"/api/ai/gpt4?text="},
+      {"method":"Get","name":"GPT 3.5 Turbo","url":"/api/ai/gpt-3-5-turbo?text="},
+      {"method":"Get","name":"Gemini","url":"/api/ai/gemini?text="},
+      {"method":"Get","name":"Sim Simi","url":"/api/ai/simsimi?msg="}
+    ]
+  },
+  {
+    "category": "Tools",
+    "list": [
+      {"method":"Get","name":"OCR","url":"/api/tools/ocr?url="},
+      {"method":"Get","name":"Shortlink Tinyurl","url":"/api/tools/tinyurl?url="},
+      {"method":"Get","name":"Shortlink Isgd","url":"/api/tools/isgd?url="},
+      {"method":"Get","name":"Whois Domain","url":"/api/tools/whois?domain="}
+    ]
+  },
+  {
+    "category": "Search",
+    "list": [
+      {"method":"Get","name":"Google Image","url":"/api/search/gimage?q="},
+      {"method":"Get","name":"Pinterest","url":"/api/search/pinterest?q="},
+      {"method":"Get","name":"Playstore","url":"/api/search/playstore?q="},
+      {"method":"Get","name":"Fdroid","url":"/api/search/fdroid?q="},
+      {"method":"Get","name":"Youtube Search","url":"/api/search/ytsearch?q="},
+      {"method":"Get","name":"Happymod","url":"/api/search/happymod?q="},
+      {"method":"Get","name":"Sfilemobi","url":"/api/search/sfile?q="},
+      {"method":"Get","name":"Tiktok Search","url":"/api/search/tiktoksearch?q="},
+      {"method":"Get","name":"NPM Search","url":"/api/search/npm?q="},
+      {"method":"Get","name":"Lyrics","url":"/api/search/lyrics?q="}
+    ]
+  },
+  {
+    "category": "Sosmed Stalk",
+    "list": [
+      {"method":"Get","name":"Tiktok Stalk","url":"/api/tools/tiktokstalk?user="},
+      {"method":"Get","name":"Instagram Stalk","url":"/api/tools/igstalk?username="},
+      {"method":"Get","name":"Github Stalk","url":"/api/tools/githubstalk?user="},
+      {"method":"Get","name":"NPM Stalk","url":"/api/tools/npmstalk?pkgname="},
+      {"method":"Get","name":"Youtube Stalk","url":"/api/tools/youtubestalk?user="}
+    ]
+  },
+  {
+    "category": "Image Creator",
+    "list": [
+      {"method":"Get","name":"Brat","url":"/api/imagecreator/bratgenerator?text="},
+      {"method":"Get","name":"Emoji Mix","url":"/api/imagecreator/emojimix?emoji1=&emoji2="},
+      {"method":"Get","name":"Emoji To Gif","url":"/api/imagecreator/emojitogif?emoji="},
+      {"method":"Get","name":"Remini","url":"/api/imagecreator/remini?url="},
+      {"method":"Get","name":"Removebg","url":"/api/imagecreator/removebg?url="},
+      {"method":"Get","name":"Upscale","url":"/api/imagecreator/upscale?url="},
+      {"method":"Get","name":"Quotely","url":"/api/imagecreator/qc?text=&fotoUrl=&nama="}
+    ]
+  },
+  {
+    "category": "Panel Pterodactyl",
+    "list": [
+      {"method":"Get","name":"Create Panel","url":"/api/pterodactyl/create?username=&ram=&disk=&cpu=&eggid=&nestid=&loc=&domain=&ptla=&ptlc="},
+      {"method":"Get","name":"List Panel","url":"/api/pterodactyl/listpanel?eggid=&nestid=&loc=&domain=&ptla=&ptlc="},
+      {"method":"Get","name":"Delete Panel","url":"/api/pterodactyl/delete?idserver=&domain=&ptla="}
+    ]
+  }
+]
