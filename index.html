@@ -7,33 +7,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
 <style>
-  body {
-    font-family: "Poppins", sans-serif;
-    background-color: #fff;
-    -webkit-tap-highlight-color: transparent;
-  }
-  * { scroll-behavior: smooth; }
-  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
-  .text-center { text-align: left; padding-bottom: 5px; margin: 0 15px; }
-  .text-center h1 { font-weight: 550; animation: colorChange 15s infinite alternate; }
-  @keyframes colorChange {
-    0% { color: rgba(0, 0, 0, 0.7); }
-    50% { color: rgb(84, 190, 255); }
-    100% { color: rgba(0, 0, 0, 0.7); }
-  }
-  .text-center h1 span { font-size: 10px; background-color: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 8px; color:#fff;}
-  .link a { color: rgba(0,0,0,0.8); font-size:15px; font-weight:550; display:block; margin:2px 0; text-decoration:none; }
-  .link a:hover { color: rgb(84, 190, 255); }
-  .card { margin: 2.6rem 4px; border-radius: 10px; background: rgba(242,242,242,0.5); padding:10px; backdrop-filter: blur(8px);}
-  .card .title { font-size: 22px; font-weight: 505; margin: 10px; color: rgba(0,0,0,0.7);}
-  .endpoints { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.5); border-radius:8px; margin: 8px 10px; padding:8px; cursor:pointer; position:relative; transition:0.3s;}
-  .endpoints:hover { background: rgba(84,190,255,0.1); }
-  .method { background-color: rgba(0,0,0,0.7); border-radius:8px; padding:2px 7px; color:#fff; font-weight:600; }
-  .name { font-size:14px; font-weight:580; color: rgba(0,0,0,0.7);}
-  .endpoints button.try-btn { background: rgba(84,190,255,1); border:none; border-radius:8px; padding:2px 7px; color:#fff; font-weight:600; cursor:pointer; transition:0.3s;}
-  .endpoints button.try-btn:hover { background: rgba(0,0,0,0.7);}
-  .popup { display:none; margin:5px 10px; padding:10px; border-radius:8px; background: rgba(0,0,0,0.05); backdrop-filter: blur(5px); animation: fadeIn 0.3s; font-family: monospace; white-space: pre-wrap; }
-  @keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+body { font-family: "Poppins", sans-serif; background:#fff; }
+.container { max-width: 800px; margin:0 auto; padding:16px;}
+.text-center { text-align:left; padding-bottom:5px; margin:0 15px; }
+.text-center h1 { font-weight:550; animation: colorChange 15s infinite alternate; }
+@keyframes colorChange { 0% { color: rgba(0,0,0,0.7); } 50% { color: rgb(84,190,255); } 100% { color: rgba(0,0,0,0.7); } }
+.text-center h1 span { font-size:10px; background: rgba(0,0,0,0.7); padding:2px 6px; border-radius:8px; color:#fff;}
+.link a { display:block; text-decoration:none; color:#000; margin:2px 0;}
+.link a:hover { color:rgb(84,190,255);}
+.card { margin:2.6rem 4px; border-radius:10px; background: rgba(242,242,242,0.5); padding:10px; backdrop-filter:blur(8px);}
+.card .title { font-size:22px; font-weight:505; margin:10px; color: rgba(0,0,0,0.7);}
+.endpoints { display:flex; justify-content:space-between; align-items:center; background: rgba(255,255,255,0.5); border-radius:8px; margin:8px 10px; padding:8px; cursor:pointer; position:relative; transition:0.3s;}
+.endpoints:hover { background: rgba(84,190,255,0.1);}
+.method { background: rgba(0,0,0,0.7); border-radius:8px; padding:2px 7px; color:#fff; font-weight:600;}
+.name { font-size:14px; font-weight:580; color: rgba(0,0,0,0.7);}
+.endpoints button.try-btn { background: rgba(84,190,255,1); border:none; border-radius:8px; padding:2px 7px; color:#fff; font-weight:600; cursor:pointer; transition:0.3s;}
+.endpoints button.try-btn:hover { background: rgba(0,0,0,0.7);}
+.popup { display:none; margin:5px 10px; padding:10px; border-radius:8px; background: rgba(0,0,0,0.05); backdrop-filter: blur(5px); animation: fadeIn 0.3s; font-family: monospace; white-space: pre-wrap; }
+@keyframes fadeIn { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
 </style>
 </head>
 <body>
@@ -46,62 +37,42 @@
     </div>
   </div>
 
-  <!-- Container untuk semua card -->
   <div id="api-cards"></div>
 </div>
 
 <script>
-  // Fetch api.json dan generate card
-  fetch('api.json')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('api-cards');
-      data.forEach(cat => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        const title = document.createElement('div');
-        title.className = 'title';
-        title.innerText = cat.category;
-        card.appendChild(title);
+fetch('api.json')
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('api-cards');
+    data.forEach(cat => {
+      const card = document.createElement('div'); card.className='card';
+      const title = document.createElement('div'); title.className='title'; title.innerText=cat.category;
+      card.appendChild(title);
+      
+      cat.list.forEach(ep => {
+        const epDiv = document.createElement('div'); epDiv.className='endpoints';
+        epDiv.innerHTML = `<p class="method">${ep.method}</p><p class="name">${ep.name}</p><button class="try-btn">Try</button>`;
+        
+        const popup = document.createElement('div'); popup.className='popup';
+        epDiv.appendChild(popup);
 
-        cat.list.forEach(ep => {
-          const epDiv = document.createElement('div');
-          epDiv.className = 'endpoints';
-          epDiv.innerHTML = `
-            <p class="method">${ep.method}</p>
-            <p class="name">${ep.name}</p>
-            <button class="try-btn">Try</button>
-          `;
-          // Popup untuk response
-          const popup = document.createElement('div');
-          popup.className = 'popup';
-          epDiv.appendChild(popup);
-
-          epDiv.querySelector('.try-btn').addEventListener('click', async () => {
-            // toggle popup
-            if(popup.style.display === 'block') {
-              popup.style.display = 'none';
-              return;
-            }
-            popup.style.display = 'block';
-            popup.innerText = 'Loading...';
-
-            try {
-              const response = await fetch(ep.url);
-              const json = await response.json();
-              popup.innerText = JSON.stringify(json, null, 2);
-            } catch(err) {
-              popup.innerText = 'Error: ' + err.message;
-            }
-          });
-
-          card.appendChild(epDiv);
+        epDiv.querySelector('.try-btn').addEventListener('click', async ()=>{
+          document.querySelectorAll('.popup').forEach(p=>p.style.display='none');
+          if(popup.style.display==='block'){ popup.style.display='none'; return; }
+          popup.style.display='block';
+          popup.innerText='Loading...';
+          try{
+            const response = await fetch(ep.url);
+            const json = await response.json();
+            popup.innerText=JSON.stringify(json,null,2);
+          }catch(err){ popup.innerText='Error: '+err.message; }
         });
-
-        container.appendChild(card);
+        card.appendChild(epDiv);
       });
-    })
-    .catch(err => console.error(err));
+      container.appendChild(card);
+    });
+  }).catch(err=>console.error(err));
 </script>
 </body>
 </html>
